@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="@localhost">
+  <database-model serializer="dbm" rdbms="ORACLE" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="SCOTT">
+      <ObjectId>48</ObjectId>
+      <IntrospectionTimestamp>2018-04-20.13:54:43</IntrospectionTimestamp>
+      <CreatedTimestamp>2018-04-20.12:55:40</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-20.13:54:43</ModifiedTimestamp>
+      <CommentsHash>6118386262545</CommentsHash>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="PUBLIC">
+      <ObjectId>1</ObjectId>
+    </schema>
+    <schema id="4" parent="1" name="SYS">
+      <ObjectId>0</ObjectId>
+    </schema>
+    <schema id="5" parent="1" name="SYSTEM">
+      <ObjectId>5</ObjectId>
+    </schema>
+    <schema id="6" parent="1" name="OUTLN">
+      <ObjectId>9</ObjectId>
+    </schema>
+    <schema id="7" parent="1" name="DIP">
+      <ObjectId>14</ObjectId>
+    </schema>
+    <schema id="8" parent="1" name="ORACLE_OCM">
+      <ObjectId>21</ObjectId>
+    </schema>
+    <schema id="9" parent="1" name="DBSNMP">
+      <ObjectId>29</ObjectId>
+    </schema>
+    <schema id="10" parent="1" name="APPQOSSYS">
+      <ObjectId>30</ObjectId>
+    </schema>
+    <schema id="11" parent="1" name="CTXSYS">
+      <ObjectId>32</ObjectId>
+    </schema>
+    <schema id="12" parent="1" name="XDB">
+      <ObjectId>34</ObjectId>
+    </schema>
+    <schema id="13" parent="1" name="ANONYMOUS">
+      <ObjectId>35</ObjectId>
+    </schema>
+    <schema id="14" parent="1" name="MDSYS">
+      <ObjectId>42</ObjectId>
+    </schema>
+    <schema id="15" parent="1" name="HR">
+      <ObjectId>43</ObjectId>
+    </schema>
+    <schema id="16" parent="1" name="FLOWS_FILES">
+      <ObjectId>44</ObjectId>
+    </schema>
+    <schema id="17" parent="1" name="APEX_PUBLIC_USER">
+      <ObjectId>45</ObjectId>
+    </schema>
+    <schema id="18" parent="1" name="APEX_040000">
+      <ObjectId>47</ObjectId>
+    </schema>
+    <schema id="19" parent="1" name="XS$NULL">
+      <ObjectId>2147483638</ObjectId>
+    </schema>
+    <sequence id="20" parent="2" name="RESUME_SEQ">
+      <ObjectId>20253</ObjectId>
+      <CreatedTimestamp>2018-04-20.13:54:43</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-20.13:54:43</ModifiedTimestamp>
+      <SequenceIdentity>1..999999999</SequenceIdentity>
+      <CacheSize>-2147483648</CacheSize>
+    </sequence>
+    <sequence id="21" parent="2" name="USER_SEQ">
+      <ObjectId>20250</ObjectId>
+      <CreatedTimestamp>2018-04-20.12:59:17</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-20.12:59:17</ModifiedTimestamp>
+      <SequenceIdentity>1..999999999</SequenceIdentity>
+      <CacheSize>-2147483648</CacheSize>
+    </sequence>
+    <table id="22" parent="2" name="T_RESUME">
+      <ObjectId>20251</ObjectId>
+      <CreatedTimestamp>2018-04-20.13:53:45</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-20.13:53:45</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="23" parent="2" name="T_USER">
+      <ObjectId>20248</ObjectId>
+      <CreatedTimestamp>2018-04-20.12:55:40</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-20.12:55:40</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <column id="24" parent="22" name="R_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="25" parent="22" name="R_NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="22" name="R_SEX">
+      <Position>3</Position>
+      <DataType>VARCHAR2(3)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="22" name="R_AGE">
+      <Position>4</Position>
+      <DataType>VARCHAR2(3)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="22" name="R_PHONE">
+      <Position>5</Position>
+      <DataType>VARCHAR2(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="29" parent="22" name="R_EMAIL">
+      <Position>6</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="30" parent="22" name="R_BIRTHDATE">
+      <Position>7</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="22" name="R_ID_CARD">
+      <Position>8</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="22" name="R_DESCRIPTION">
+      <Position>9</Position>
+      <DataType>VARCHAR2(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="22" name="U_ID">
+      <Position>10</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="34" parent="22" name="SYS_C007032">
+      <ObjectId>20252</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-04-20.13:53:45</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-20.13:53:45</ModifiedTimestamp>
+      <TablespaceName>SYSTEM</TablespaceName>
+      <ColNames>R_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="35" parent="22" name="SYS_C007032">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2018-04-20.13:53:45</ModifiedTimestamp>
+      <ColNames>R_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C007032</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="36" parent="23" name="U_ID">
+      <Position>1</Position>
+      <Comment>用户的主键</Comment>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="37" parent="23" name="U_NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="38" parent="23" name="U_PASS">
+      <Position>3</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="39" parent="23" name="U_EMAIL">
+      <Position>4</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="40" parent="23" name="SYS_C007021">
+      <ObjectId>20249</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-04-20.12:55:41</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-20.12:55:41</ModifiedTimestamp>
+      <TablespaceName>SYSTEM</TablespaceName>
+      <ColNames>U_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="41" parent="23" name="SYS_C007021">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2018-04-20.12:55:41</ModifiedTimestamp>
+      <ColNames>U_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C007021</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
