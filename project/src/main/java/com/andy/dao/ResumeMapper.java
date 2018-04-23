@@ -11,4 +11,5 @@ public interface ResumeMapper {
     boolean addResume(Resume resume);//用户添加简历
     List<Resume> allResume(int uid);
     boolean deleteResume(int rid);
+    List<Resume> findResumeByUid(int uid);
 }

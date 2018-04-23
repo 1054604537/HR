@@ -6,6 +6,7 @@ import com.andy.model.BossResume;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by 10546 on 2018/4/22.
@@ -18,5 +19,14 @@ public class BossResumeServiceImpl implements BossResumeService{
     public boolean addBossResume(BossResume bossResume) {
         bossResumeMapper.addBossResume(bossResume);
         return true;
+    }
+
+    @Override
+    public List<BossResume> allBossResume() {
+        List<BossResume> list=bossResumeMapper.allBossResume();
+        if (list.size()!=0){
+            return list;
+        }
+        return null;
     }
 }

@@ -4,9 +4,9 @@
     <root id="1"/>
     <schema id="2" parent="1" name="SCOTT">
       <ObjectId>48</ObjectId>
-      <IntrospectionTimestamp>2018-04-23.09:57:44</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2018-04-23.11:31:25</IntrospectionTimestamp>
       <CreatedTimestamp>2018-04-20.12:55:40</CreatedTimestamp>
-      <ModifiedTimestamp>2018-04-23.09:57:43</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-04-23.11:30:28</ModifiedTimestamp>
       <CommentsHash>6118386262545</CommentsHash>
       <Current>1</Current>
       <Visible>1</Visible>
@@ -100,7 +100,7 @@
     <table id="25" parent="2" name="T_BOSS_RESUME">
       <ObjectId>20354</ObjectId>
       <CreatedTimestamp>2018-04-22.13:55:55</CreatedTimestamp>
-      <ModifiedTimestamp>2018-04-22.22:56:32</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-04-23.11:30:28</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="26" parent="2" name="T_DEPT">
@@ -142,7 +142,7 @@
       <DataType>VARCHAR2(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="33" parent="25" name="BR_UNAMAE">
+    <column id="33" parent="25" name="BR_UNAME">
       <Position>4</Position>
       <DataType>VARCHAR2(255)|0</DataType>
       <NotNull>1</NotNull>

@@ -39,6 +39,8 @@ public class BossResume implements Serializable {
     }
 
     public void setBr_date(Date br_date) {
+
+
         this.br_date = br_date;
     }
 

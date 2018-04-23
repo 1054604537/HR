@@ -1,0 +1,35 @@
+diff a/project/.idea/dataSources/b675c5fa-430c-4927-b666-fd55d9ad5688.xml b/project/.idea/dataSources/b675c5fa-430c-4927-b666-fd55d9ad5688.xml	(rejected hunks)
+@@ -315,28 +315,28 @@
+       <UnderlyingIndexName>SYS_C007032</UnderlyingIndexName>
+       <Primary>1</Primary>
+     </key>
+-    <column id="36" parent="23" name="U_ID">
++    <column id="62" parent="29" name="U_ID">
+       <Position>1</Position>
+       <Comment>用户的主键</Comment>
+       <DataType>NUMBER(*)|0</DataType>
+       <NotNull>1</NotNull>
+     </column>
+-    <column id="37" parent="23" name="U_NAME">
++    <column id="63" parent="29" name="U_NAME">
+       <Position>2</Position>
+       <DataType>VARCHAR2(20)|0</DataType>
+       <NotNull>1</NotNull>
+     </column>
+-    <column id="38" parent="23" name="U_PASS">
++    <column id="64" parent="29" name="U_PASS">
+       <Position>3</Position>
+       <DataType>VARCHAR2(20)|0</DataType>
+       <NotNull>1</NotNull>
+     </column>
+-    <column id="39" parent="23" name="U_EMAIL">
++    <column id="65" parent="29" name="U_EMAIL">
+       <Position>4</Position>
+       <DataType>VARCHAR2(20)|0</DataType>
+       <NotNull>1</NotNull>
+     </column>
+-    <index id="40" parent="23" name="SYS_C007021">
++    <index id="66" parent="29" name="SYS_C007021">
+       <ObjectId>20249</ObjectId>
+       <NameSurrogate>1</NameSurrogate>
+       <CreatedTimestamp>2018-04-20.12:55:41</CreatedTimestamp>

@@ -81,6 +81,7 @@ public class UserController {
         return "login";
     }
     @RequestMapping("/login")
+    //用户登录
     public String login(String name, String pass, Model model){
         System.out.println("后台登录界面");
         List<User> list=userService.allUser();

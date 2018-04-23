@@ -19,24 +19,13 @@
 <script type="text/javascript">
 </script>
 <script type="text/javascript">
-    $(function () {
-        $("#username").focus();
-       function hadoop() {
-            $.ajax({
-                url:"dumplicate",
-                type:"post",
-                date:"username="+$("username").val(),
-                success:function (message) {
-                    $("#message").html(message);
-                }
-            });
-        }
-    });
+$.ajax({
+
+})
 </script>
   <body>
   <div>
       欢迎来到xxx公司！
-
 
   </div>
   <fieldset>
@@ -45,7 +34,7 @@
           <form action="addUser" method="get" accept-charset="utf-8" onsubmit="check(this);return false;">
               <div class="name">
                   账号：
-                  <input type="text" name="name" value='' autofocus id="username" onblur="hadoop()"/><span id="message"></span>
+                  <input type="text" name="name" value='' autofocus /><span></span>
               </div>
               <div class="pass">
                   密码： <input type="password" name="pass"  value=''/>
@@ -61,6 +50,7 @@
           </form>
       </div>
           <a href="login2">已是客户？直接登录</a>
+      <a href="adminlogin">管理员登录</a>
   </fieldset>
   <script type="text/javascript">
       function check(form) {

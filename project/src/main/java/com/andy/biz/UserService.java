@@ -14,4 +14,5 @@ public interface UserService {
     User fingUserByName(String name);
     User findUserByResume(User user);
     boolean updatepass(User user);//修改密码
+    User findUserToResumByName(User user);
 }

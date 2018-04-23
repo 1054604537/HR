@@ -34,4 +34,9 @@ public class ResumeServiceImpl implements ResumeService {
     public boolean deleteResume(int rid) {
         return resumeMapper.deleteResume(rid);
     }
+
+    @Override
+    public List<Resume> findResumeByUid(int uid) {
+        return resumeMapper.findResumeByUid(uid);
+    }
 }

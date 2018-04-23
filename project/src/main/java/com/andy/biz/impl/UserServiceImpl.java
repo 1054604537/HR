@@ -53,4 +53,10 @@ public class UserServiceImpl implements UserService {
         userMapper.updatepass(user);
         return true;
     }
+
+    @Override
+    public User findUserToResumByName(User user) {
+        User user1=userMapper.findUserToResumByName(user);
+        return user1;
+    }
 }

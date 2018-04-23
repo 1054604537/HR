@@ -23,6 +23,7 @@
         WHERE tr.U_ID=tu.U_ID
         and tu.U_ID=#{u_id}
     </select>
+
     <resultMap id="query" type="User">
         <id property="u_id" column="U_ID"></id>
         <result column="U_NAME" property="u_name"></result>
@@ -30,6 +31,25 @@
         <collection property="resumes" ofType="Resume">
             <id property="r_id" column="R_ID"></id>
             <result property="r_phone" column="R_PHONE"></result>
+
+        </collection>
+     </resultMap>
+    <select id="findUserToResumByName" resultMap="find">
+        select tu.U_ID,tu.U_NAME,tr.R_ID,tr.R_SEX,tr.R_AGE,tr.R_PHONE,tr.R_EDUCATION,tr.R_DESCRIPTION,tr.R_BIRTHDATE from T_USER tu,T_RESUME tr
+        WHERE tr.U_ID=tu.U_ID
+        and U_NAME=#{u_name}
+    </select>
+    <resultMap id="find" type="User">
+        <id property="u_id" column="U_id"></id>
+        <result property="u_name" column="U_name"></result>
+        <collection property="resumes" ofType="Resume">
+            <id property="r_id" column="R_ID"></id>
+            <result property="r_sex" column="R_SEX"></result>
+            <result property="r_age" column="R_AGE"></result>
+            <result property="r_phone" column="R_PHONE"></result>
+            <result property="r_education" column="R_EDUCATION"></result>
+            <result property="r_description" column="R_DESCRIPTION"></result>
+            <result property="r_birthdate" column="R_BIRTHDATE"></result>
         </collection>
      </resultMap>
 </mapper>
