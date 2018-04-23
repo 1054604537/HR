@@ -21,7 +21,7 @@
 <fieldset>
     <legend>登录</legend>
     <div style="padding: 40px 100px 200px 100px">
-        <form action="login" method="get" accept-charset="utf-8" onsubmit="check(this);return false;">
+        <form action="login" method="post" accept-charset="utf-8" onsubmit="check(this);return false;">
             <div class="name">
                 账号：
                 <input type="text" name="name" value='' autofocus id="username" onblur="hadoop()"/><span id="message"></span>

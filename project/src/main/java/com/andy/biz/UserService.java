@@ -12,4 +12,6 @@ public interface UserService {
     List<User> allUser();
     User findUser(User user);
     User fingUserByName(String name);
+    User findUserByResume(User user);
+    boolean updatepass(User user);//修改密码
 }

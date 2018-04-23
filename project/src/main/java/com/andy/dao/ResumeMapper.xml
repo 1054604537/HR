@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.andy.dao.ResumeMapper">
+
+    <insert id="addResume" parameterType="Resume">
+       insert into T_RESUME(R_ID, R_NAME, R_SEX, R_AGE, R_PHONE, R_EMAIL, R_BIRTHDATE, R_EDUCATION, R_DESCRIPTION, U_ID) VALUES(RESUME_SEQ.nextval,#{r_name},#{r_sex}，#{r_age},#{r_phone},#{r_email},#{r_birthdate},#{r_education},#{r_description},#{u_id}
+       )
+    </insert>
+    <delete id="deleteResume">
+        DELETE from T_RESUME WHERE R_ID=#{rid}
+    </delete>
+    <select id="allResume" resultType="com.andy.model.Resume">
+        select R_ID,R_NAME,R_SEX,R_AGE,R_PHONE,R_EMAIL,R_BIRTHDATE,R_EDUCATION,R_DESCRIPTION
+        from T_RESUME WHERE U_ID=#{uid}
+    </select>
+</mapper>

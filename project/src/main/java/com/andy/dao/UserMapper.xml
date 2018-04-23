@@ -6,6 +6,9 @@
     <insert id="addUser">
         insert into T_USER(U_ID, U_NAME, U_PASS, U_EMAIL) VALUES (USER_SEQ.nextval,#{u_name},#{u_pass},#{u_email})
     </insert>
+    <update id="updatepass">
+        update T_USER set U_PASS=#{u_pass}  where u_id=#{u_id}
+    </update>
     <select id="fingUserByName" resultType="User">
         SELECT * from T_USER WHERE U_NAME=#{name}
     </select>
@@ -15,4 +18,18 @@
     <select id="findUser" resultType="com.andy.model.User">
         select U_NAME,U_PASS from T_USER
     </select>
+    <select id="findUserByResume" resultMap="query">
+        select DISTINCT tu.U_NAME,tu.U_EMAIL,tr.R_PHONE from T_USER tu,T_RESUME tr
+        WHERE tr.U_ID=tu.U_ID
+        and tu.U_ID=#{u_id}
+    </select>
+    <resultMap id="query" type="User">
+        <id property="u_id" column="U_ID"></id>
+        <result column="U_NAME" property="u_name"></result>
+        <result property="u_email" column="U_EMAIL"></result>
+        <collection property="resumes" ofType="Resume">
+            <id property="r_id" column="R_ID"></id>
+            <result property="r_phone" column="R_PHONE"></result>
+        </collection>
+     </resultMap>
 </mapper>

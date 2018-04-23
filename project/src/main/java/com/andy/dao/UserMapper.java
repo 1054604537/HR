@@ -12,4 +12,6 @@ public interface UserMapper {
     List<User> allUser();//全部用户
     User findUser(User user);
     User fingUserByName(String name);
+    User findUserByResume(User user);
+    boolean updatepass(User user);//修改密码
 }

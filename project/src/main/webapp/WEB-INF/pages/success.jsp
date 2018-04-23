@@ -17,9 +17,12 @@
     <title>登录成功界面。。。</title>
 </head>
 <body>
-    welcome ${user} 进入。。。
-    <a>浏览本公司招聘信息</a>
-    <a href="#">添加个人简历</a>
+    <div>
+        <a href="seerecruit?uid=${user.u_id}">浏览本公司招聘信息</a><br/>
+        <a href="addresume?uid=${user.u_id}">添加个人简历</a><br/>
+        <a href="seeresumne?uid=${user.u_id}">查看简历</a><br/>
+        <a href="updatepass?uid=${user.u_id}">修改密码</a>
+    </div>
 
 
 </body>

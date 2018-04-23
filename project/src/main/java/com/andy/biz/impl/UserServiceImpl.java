@@ -41,4 +41,16 @@ public class UserServiceImpl implements UserService {
     public User fingUserByName(String name) {
         return userMapper.fingUserByName(name);
     }
+
+    @Override
+    public User findUserByResume(User user) {
+        User user1=userMapper.findUserByResume(user);
+        return user1;
+    }
+
+    @Override
+    public boolean updatepass(User user) {
+        userMapper.updatepass(user);
+        return true;
+    }
 }

@@ -1,16 +1,19 @@
 package com.andy.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 10546 on 2018/4/20.
  */
+//用户实体类
 public class User implements Serializable {
     private int u_id;
     private String u_name;
     private String u_pass;
     private String u_email;
-
+    private List<Resume> resumes=new ArrayList<>();
 
     public User() {
     }
@@ -20,6 +23,14 @@ public class User implements Serializable {
         this.u_name = u_name;
         this.u_pass = u_pass;
         this.u_email = u_email;
+    }
+
+    public User(int u_id, String u_name, String u_pass, String u_email, List<Resume> resumes) {
+        this.u_id = u_id;
+        this.u_name = u_name;
+        this.u_pass = u_pass;
+        this.u_email = u_email;
+        this.resumes = resumes;
     }
 
     public User(String u_name, String u_pass) {
@@ -65,6 +76,14 @@ public class User implements Serializable {
         this.u_email = u_email;
     }
 
+    public List<Resume> getResumes() {
+        return resumes;
+    }
+
+    public void setResumes(List<Resume> resumes) {
+        this.resumes = resumes;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -72,6 +91,7 @@ public class User implements Serializable {
                 ", u_name='" + u_name + '\'' +
                 ", u_pass='" + u_pass + '\'' +
                 ", u_email='" + u_email + '\'' +
+                ", resumes=" + resumes+
                 '}';
     }
 }
