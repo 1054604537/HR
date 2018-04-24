@@ -18,8 +18,8 @@
     <title>查看投递简历</title>
     <style>
         .box{
-            width:80%; margin-top:10%; margin:auto; padding:28px;
-            height:1000px; border:1px #111 solid;
+            width:50%; margin-top:10%; margin:auto; padding:28px;
+            height:400px; border:1px #111 solid;
             display:none;            /* 默认对话框隐藏 */
         }
         .box.show{display:block;}
@@ -44,6 +44,7 @@
             <th>投递人邮箱</th>
             <th>查看投递人个人简历</th>
             <th>发出面试邀请</th>
+            <th>删除</th>
         </tr>
         <c:forEach var="items" items="${bossresumes}">
             <tr>
@@ -58,7 +59,21 @@
 
                 </td>
                 <td>
-                        <input type="button" value="发出邀请" onclick="msgbox(1)"/>
+                    <form action="inviteToUser" method="post">
+                        <input type="date" name="date" placeholder="面试时间"/>
+                        <input type="hidden" value="${items.br_job}" name="job"/>
+                        <input type="text" name="site" placeholder="面试地点">
+                        <input type="text" name="descrption" placeholder="其他描述">
+                        <input type="hidden" value="${uid}" name="uid">
+                        <input type="submit" value="发出邀请"/>
+                    </form>
+
+                </td>
+                <td>
+                        <form method="post" action="deleteboss">
+                            <input type="hidden" value="${items.br_id}" name="brid"/>
+                            <input type="submit" value="删除"/>
+                        </form>
                 </td>
             </tr>
         </c:forEach>
@@ -68,29 +83,40 @@
         <div id="inputbox" class="box">
             <a class="x" href="" onclick="msgbox(0);return false">关闭</a>
             <p>详细简历</p>
+                    <c:forEach items="${resume}" var="inems">
             <table border="1" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td>姓名</td>
-                    <td>性别</td>
-                    <td>年龄</td>
-                    <td>手机号码</td>
-                    <td>出生日期</td>
-                    <td>学历</td>
-                    <td>自我描述</td>
-                </tr>
-                     <c:forEach items="${resume}" var="inems">
-                <tr>
-                    <td>${inems.r_name}</td>
-                    <td>${inems.r_sex}</td>
-                    <td>${inems.r_age}</td>
-                    <td>${inems.r_phone}</td>
-                    <td>${inems.r_birthdate}</td>
-                    <td>${inems.r_education}</td>
-                    <td>${inems.r_description}</td>
-                       </c:forEach>
+
+                    <tr>
+                        <th>姓名</th>
+                        <td>${inems.r_name}</td>
+                    </tr>
+                    <tr>
+                        <th>性别</th>
+                        <td>${inems.r_sex}</td>
+                    </tr>
+                    <tr>
+                        <th>年龄</th>
+                        <td>${inems.r_age}</td>
+                    </tr>
+                    <tr>
+                        <th>手机号码</th>
+                        <td>${inems.r_phone}</td>
+                    </tr>
+                    <tr>
+                        <th>出生日期</th>
+                        <td>${inems.r_birthdate}</td>
+                    </tr>
+                    <tr>
+                        <th>学历</th>
+                        <td>${inems.r_education}</td>
+                    </tr>
+                    <tr>
+                        <th>个人描述</th>
+                        <td>${inems.r_description}</td>
                     </tr>
 
             </table>
+            </c:forEach>
         </div>
 </body>
 </html>

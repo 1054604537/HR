@@ -15,4 +15,7 @@ public interface UserService {
     User findUserByResume(User user);
     boolean updatepass(User user);//修改密码
     User findUserToResumByName(User user);
+    List<User> userToMassage(User user);//用户的邀请信息 UID
+    List<User> findUserById(int uid);
+    List<User> findUserByResume2(int uid);//uid 查找简历
 }

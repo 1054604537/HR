@@ -10,10 +10,13 @@
         DELETE from T_RESUME WHERE R_ID=#{rid}
     </delete>
     <select id="allResume" resultType="com.andy.model.Resume">
-        select R_ID,R_NAME,R_SEX,R_AGE,R_PHONE,R_EMAIL,R_BIRTHDATE,R_EDUCATION,R_DESCRIPTION
+        select R_ID,R_NAME,R_SEX,R_AGE,R_PHONE,R_EMAIL,R_BIRTHDATE,R_EDUCATION,R_DESCRIPTION,U_ID
         from T_RESUME WHERE U_ID=#{uid}
     </select>
     <select id="findResumeByUid" resultType="com.andy.model.Resume">
         select R_ID,R_NAME,R_SEX,R_AGE,R_PHONE,R_EMAIL,R_BIRTHDATE,R_EDUCATION,R_DESCRIPTION,U_ID from T_RESUME WHERE U_ID=#{uid}
+    </select>
+    <select id="allResume2" resultType="com.andy.model.Resume">
+        select R_ID,R_NAME,R_SEX,R_AGE,R_PHONE,R_EMAIL,R_BIRTHDATE,R_EDUCATION,R_DESCRIPTION,R_ID from T_RESUME
     </select>
 </mapper>

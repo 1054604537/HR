@@ -29,4 +29,9 @@ public class BossResumeServiceImpl implements BossResumeService{
         }
         return null;
     }
+
+    @Override
+    public boolean deleteBossResume(int brid) {
+        return bossResumeMapper.deleteBossResume(brid);
+    }
 }

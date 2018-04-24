@@ -10,4 +10,5 @@ import java.util.List;
 public interface BossResumeMapper {
     boolean addBossResume(BossResume bossResume);
     List<BossResume> allBossResume();//全部投递人的简历
+    boolean deleteBossResume(int brid);//根据id删除
 }

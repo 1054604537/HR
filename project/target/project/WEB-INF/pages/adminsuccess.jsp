@@ -17,7 +17,7 @@
     <title>管理员界面</title>
 </head>
 <body>
-    ${admin}进入
+
 <div>
     <div class="left_box">
         <ul>
@@ -26,6 +26,9 @@
             </li>
             <li>
                 <a href="#">增加公司职位信息及人员部署</a>
+            </li>
+            <li>
+                <a href="allotToEmp">查看未分配工作人员--及入职人员分配操作（部门 职位 薪资 其他）</a>
             </li>
         </ul>
     </div>

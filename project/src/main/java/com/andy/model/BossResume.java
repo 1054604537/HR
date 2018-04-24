@@ -1,5 +1,7 @@
 package com.andy.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,6 +10,7 @@ import java.util.Date;
  */
 public class BossResume implements Serializable {
     private int br_id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date br_date;
     private String br_job;
     private String br_uname;

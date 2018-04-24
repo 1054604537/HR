@@ -2,7 +2,9 @@ package com.andy.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by 10546 on 2018/4/20.
@@ -14,6 +16,7 @@ public class User implements Serializable {
     private String u_pass;
     private String u_email;
     private List<Resume> resumes=new ArrayList<>();
+    private List<Invite> invites=new ArrayList<>();
 
     public User() {
     }
@@ -25,12 +28,13 @@ public class User implements Serializable {
         this.u_email = u_email;
     }
 
-    public User(int u_id, String u_name, String u_pass, String u_email, List<Resume> resumes) {
+    public User(int u_id, String u_name, String u_pass, String u_email, List<Resume> resumes, List<Invite> invites) {
         this.u_id = u_id;
         this.u_name = u_name;
         this.u_pass = u_pass;
         this.u_email = u_email;
         this.resumes = resumes;
+        this.invites = invites;
     }
 
     public User(String u_name, String u_pass) {
@@ -84,6 +88,14 @@ public class User implements Serializable {
         this.resumes = resumes;
     }
 
+    public List<Invite> getInvites() {
+        return invites;
+    }
+
+    public void setInvites(List<Invite> invites) {
+        this.invites = invites;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -91,7 +103,8 @@ public class User implements Serializable {
                 ", u_name='" + u_name + '\'' +
                 ", u_pass='" + u_pass + '\'' +
                 ", u_email='" + u_email + '\'' +
-                ", resumes=" + resumes+
+                ", resumes=" + resumes +
+                ", invites=" + invites +
                 '}';
     }
 }

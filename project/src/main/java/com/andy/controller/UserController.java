@@ -1,13 +1,7 @@
 package com.andy.controller;
 
-import com.andy.biz.BossResumeService;
-import com.andy.biz.RecruitService;
-import com.andy.biz.ResumeService;
-import com.andy.biz.UserService;
-import com.andy.model.BossResume;
-import com.andy.model.Recruit;
-import com.andy.model.Resume;
-import com.andy.model.User;
+import com.andy.biz.*;
+import com.andy.model.*;
 import com.sun.org.apache.bcel.internal.generic.I2F;
 import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -47,6 +41,8 @@ public class UserController {
     private RecruitService recruitService;
     @Resource
     private BossResumeService bossResumeService;
+    @Resource
+    private InviteService inviteService;
     @RequestMapping("/dumplicate")
     public String check(String username,HttpServletResponse response){
 
@@ -82,13 +78,13 @@ public class UserController {
     }
     @RequestMapping("/login")
     //用户登录
-    public String login(String name, String pass, Model model){
+    public String login(String name, String pass, Model model,HttpSession session){
         System.out.println("后台登录界面");
         List<User> list=userService.allUser();
         User user1=userService.fingUserByName(name);
         for (User user:list){
             if (user.getU_name().equals(name)&&user.getU_pass().equals(pass)){
-                model.addAttribute("user",user1);
+                session.setAttribute("user",user1);
                 return "success";
             }
         }
@@ -104,22 +100,34 @@ public class UserController {
     }
 
     @RequestMapping("/addre")
-    public String addre(Resume resume,Model model,HttpServletRequest request){
+    public String addre(Resume resume,Model model,HttpServletRequest request,HttpSession session){
+        User user= (User) session.getAttribute("user");
         int uid= Integer.parseInt(request.getParameter("uid"));
-        resume.setU_id(uid);
+        resume.setU_id(user.getU_id());
         System.out.println("添加个人简历");
-        if(null!=resume){
-            model.addAttribute("resume",resume);//存简历
-            resumeService.addResume(resume);
-            System.out.println(resume);
-            return "success";
+
+        List<Resume>list=resumeService.allResume2();
+        System.out.println(list);
+        for (int i =0;i<list.size();i++){
+           if (list.get(i).getU_id()==user.getU_id()){//有记录
+               System.out.println("xxxxxxxxxxxxxxxx");
+               return "seeresumne";
+           }else {
+               System.out.println("ssssssssssbbbbbbbbb");
+               model.addAttribute("resume",resume);//存简历
+               resumeService.addResume(resume);
+               System.out.println(resume);
+               return "success";
+           }
         }
         return "";
     }
     @RequestMapping("/seeresumne")
-    public String seeresumne(Model model,int uid){
+    public String seeresumne(Model model,HttpSession session){
+        User user= (User) session.getAttribute("user");
+        System.out.println(user);
         System.out.println("查看个人简历");
-        List<Resume> list=resumeService.allResume(uid);
+        List<Resume> list=resumeService.allResume(user.getU_id());
         model.addAttribute("resume",list);
         System.out.println(list);
         return "seeresumne";
@@ -141,7 +149,8 @@ public class UserController {
 
     @RequestMapping("/seerecruit")
     public String seeRecruit(HttpSession session,int uid,Model model){
-        System.out.println("查看全部公司简历");
+
+        System.out.println("查看全部公司招聘信息");
         List<Recruit> list=recruitService.allRecruit();
         if (list.size()!=0){
             session.setAttribute("uid",uid);
@@ -186,6 +195,7 @@ public class UserController {
           bossResume.setBr_date(date1);
           System.out.println(bossResume+"222222222222");
           if (null!=bossResume){
+              System.out.println("5555555555555555555555555");
              bossResumeService.addBossResume(bossResume);
               return "success";
           }
@@ -207,4 +217,27 @@ public class UserController {
         System.out.println("ok");
         return "login";
     }
+
+    @RequestMapping("/message")
+    public String messageUser(HttpSession session,Model model){
+       User user= (User) session.getAttribute("user");
+        user.getU_id();
+      //  List<User>list=userService.userToMassage(user);
+        Invite invite=new Invite();
+        invite.setI_uid(user.getU_id());
+        List<Invite> list1=inviteService.userMassageByUid(invite);
+        model.addAttribute("invite1",list1);
+        System.out.println(list1+"list1wwww");
+        return "userMessage";
+    }
+
+    @RequestMapping("/accept")
+    public String accept(HttpSession session,HttpServletRequest request){
+        User user= (User) session.getAttribute("user");
+        Invite invite=new Invite();
+            invite.setI_isno_accept("接受面试");//成为员工。。。
+            invite.setI_uid(user.getU_id());
+            inviteService.isOrNoAccept(invite);
+            return "success";
+        }
 }

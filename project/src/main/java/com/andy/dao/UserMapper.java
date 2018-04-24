@@ -12,7 +12,11 @@ public interface UserMapper {
     List<User> allUser();//全部用户
     User findUser(User user);
     User fingUserByName(String name);
-    User findUserByResume(User user);
+    User findUserByResume(User user);//uid 查找简历
     boolean updatepass(User user);//修改密码
     User findUserToResumByName(User user);
+    List<User> findUserById(int uid);
+    List<User> userToMassage(User user);//用户的邀请信息 UID
+
+    List<User> findUserByResume2(int uid);//uid 查找简历
 }

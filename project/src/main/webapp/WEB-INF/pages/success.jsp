@@ -18,10 +18,27 @@
 </head>
 <body>
     <div>
-        <a href="seerecruit?uid=${user.u_id}">浏览本公司招聘信息</a><br/>
-        <a href="addresume?uid=${user.u_id}">添加个人简历</a><br/>
-        <a href="seeresumne?uid=${user.u_id}">查看简历</a><br/>
-        <a href="updatepass?uid=${user.u_id}">修改密码</a>
+        <ul>
+            <li>
+                <a href="seerecruit?uid=${user.u_id}">浏览本公司招聘信息</a><br/>
+            </li>
+            <li>
+                <a href="addresume?uid=${user.u_id}">添加个人简历</a><br/>
+            </li>
+            <li>
+                <a href="seeresumne?uid=${user.u_id}">查看简历</a><br/>
+            </li>
+            <li>
+                <a href="message">我的消息</a>
+            </li>
+            <li>
+                <a href="updatepass?uid=${user.u_id}">修改密码</a>
+            </li>
+        </ul>
+
+
+
+
     </div>
 
 

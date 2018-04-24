@@ -39,4 +39,9 @@ public class ResumeServiceImpl implements ResumeService {
     public List<Resume> findResumeByUid(int uid) {
         return resumeMapper.findResumeByUid(uid);
     }
+
+    @Override
+    public List<Resume> allResume2() {
+        return resumeMapper.allResume2();
+    }
 }

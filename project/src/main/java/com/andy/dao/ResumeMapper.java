@@ -12,4 +12,7 @@ public interface ResumeMapper {
     List<Resume> allResume(int uid);
     boolean deleteResume(int rid);
     List<Resume> findResumeByUid(int uid);
+    List<Resume> allResume2();//全部 用来判段是否存在数据
+
+
 }

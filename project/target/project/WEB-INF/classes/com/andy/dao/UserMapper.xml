@@ -19,7 +19,7 @@
         select U_NAME,U_PASS from T_USER
     </select>
     <select id="findUserByResume" resultMap="query">
-        select DISTINCT tu.U_NAME,tu.U_EMAIL,tr.R_PHONE from T_USER tu,T_RESUME tr
+        select DISTINCT tu.U_NAME,tu.U_EMAIL,tr.R_PHONE,tr.R_EMAIL  from T_USER tu,T_RESUME tr
         WHERE tr.U_ID=tu.U_ID
         and tu.U_ID=#{u_id}
     </select>
@@ -39,6 +39,7 @@
         WHERE tr.U_ID=tu.U_ID
         and U_NAME=#{u_name}
     </select>
+
     <resultMap id="find" type="User">
         <id property="u_id" column="U_id"></id>
         <result property="u_name" column="U_name"></result>
@@ -52,4 +53,45 @@
             <result property="r_birthdate" column="R_BIRTHDATE"></result>
         </collection>
      </resultMap>
+
+
+    <select id="userToMassage" resultMap="massage">
+      select tu.U_NAME,ti.I_JOB,ti.I_DATE,ti.I_SITE,ti.I_DESCRPTION discription from T_USER tu,T_INVITE ti
+      WHERE tu.U_ID=ti.I_UID
+      and U_ID=#{u_id}
+    </select>
+    <select id="findUserById" resultType="com.andy.model.User">
+        select DISTINCT U_NAME ,U_ID from T_USER WHERE U_ID=#{uid}
+    </select>
+    <select id="findUserByResume2" resultMap="jquery">
+     select tu.U_ID,U_NAME,U_EMAIL,R_ID,R_ID,R_NAME,R_SEX,R_AGE,R_PHONE,R_BIRTHDATE,R_EDUCATION,R_DESCRIPTION,R_EMAIL
+     from T_USER tu,T_RESUME tr
+     where tu.U_ID=#{uid}
+    </select>
+    <resultMap id="jquery" type="User">
+        <id property="u_id" column="U_ID"></id>
+        <result property="u_name" column="U_NAME"></result>
+        <collection property="resumes" ofType="Resume">
+            <id property="r_id" column="R_ID"></id>
+            <result property="r_name" column="R_NAME"></result>
+            <result property="r_sex" column="R_SEX"></result>
+            <result property="r_age" column="R_AGE"></result>
+            <result property="r_phone" column="R_PHONE"></result>
+            <result property="r_email" column="R_EMAIL"></result>
+            <result property="r_birthdate" column="R_BIRTHDATE"></result>
+            <result property="r_education" column="R_EDUCATION"></result>
+            <result property="r_description" column="R_DESCRIPTION"></result>
+        </collection>
+    </resultMap>
+    <resultMap id="massage" type="User">
+        <id property="u_id" column="U_ID"></id>
+        <result property="u_name" column="U_NAME"></result>
+        <collection property="invites" ofType="Invite">
+            <id property="i_id" column="I_ID"></id>
+            <result property="i_job" column="I_JOB"></result>
+            <result property="i_date" column="I_DATE"></result>
+            <result property="i_site" column="I_SITE"></result>
+            <result property="i_description" column="I_DESCRPTION"></result>
+        </collection>
+    </resultMap>
 </mapper>

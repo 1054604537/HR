@@ -59,4 +59,19 @@ public class UserServiceImpl implements UserService {
         User user1=userMapper.findUserToResumByName(user);
         return user1;
     }
+
+    @Override
+    public List<User> userToMassage(User user) {
+        return userMapper.userToMassage(user);
+    }
+
+    @Override
+    public List<User> findUserById(int uid) {
+        return userMapper.findUserById(uid);
+    }
+
+    @Override
+    public List<User> findUserByResume2(int uid) {
+        return userMapper.findUserByResume2(uid);
+    }
 }

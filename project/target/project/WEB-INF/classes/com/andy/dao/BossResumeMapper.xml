@@ -4,6 +4,9 @@
     <insert id="addBossResume" parameterType="BossResume">
         insert into T_BOSS_RESUME (BR_ID, BR_DATE, BR_JOB, BR_UNAME, BR_UPHONE, BR_UEMAIL) values (BOSSRESUME_SEQ.nextval,#{br_date},#{br_job},#{br_uname},#{br_uphone},#{br_uemail})
     </insert>
+    <delete id="deleteBossResume">
+         DELETE from T_BOSS_RESUME WHERE BR_ID=#{brid}
+    </delete>
     <select id="allBossResume" resultType="com.andy.model.BossResume">
         select BR_ID,BR_DATE,BR_JOB,BR_UNAME,BR_UPHONE,BR_UEMAIL from T_BOSS_RESUME
     </select>
