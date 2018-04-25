@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 10546
@@ -18,7 +19,25 @@
 </head>
 <body>
 
-    员工编号： ${resume}
+
+<form method="post" action="addEmp">
+    <c:forEach items="${resume}" var="items">
+        员工编号：<input type="text" value="${items.r_phone}" name="id" readonly="readonly"><br/>
+        员工姓名：<input type="text" value="${items.r_name}" name="name" readonly="readonly"><br/>
+        员工性别：<input type="text" value="${items.r_sex}" name="sex" readonly="readonly"/><br/>
+        员工电话：<input type="text" value="${items.r_phone}" name="phone" readonly="readonly"/><br/>
+        员工邮箱：<input type="text" value="${items.r_email}" name="email" readonly="readonly"><br/>
+        <input type="hidden" value="${items.u_id}" name="uid">
+    </c:forEach>
+    部门编号：
+
+    <c:forEach items="#{dept}" var="dept">
+        ${dept.d_id}:${dept.d_name} <input type="radio" name="did" value="${dept.d_id}"/>
+
+    </c:forEach>
+
+    <input type="submit" value="提交"/>
+</form>
 
 </body>
 </html>

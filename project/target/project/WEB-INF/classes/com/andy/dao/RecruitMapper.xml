@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.andy.dao.RecruitMapper">
+    <insert id="addRecruit">
+        insert into T_RECRUIT (RE_ID, J_NAME, RE_NUMBER, RE_EDUCATION, RE_SAL, RE_DESCRPTION) values (RECRUIT_SEQ.nextval,#{j_name},#{re_number},#{re_education},#{re_sal},#{re_descrption})
+    </insert>
+    <delete id="deleteRecruit">
+        DELETE FROM T_RECRUIT WHERE RE_ID=#{rid}
+    </delete>
     <select id="allRecruit" resultType="com.andy.model.Recruit">
         SELECT RE_ID,J_NAME,RE_NUMBER,RE_SAL,RE_DESCRPTION,RE_EDUCATION  FROM T_RECRUIT
 

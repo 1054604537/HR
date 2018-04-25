@@ -47,7 +47,9 @@ $.ajax({
                   邮箱：<input type="email" name="email" >
               </div>
               <input type="submit" value="注册">
+
           </form>
+
       </div>
           <a href="login2">已是客户？直接登录</a>
       <a href="adminlogin">管理员登录</a>

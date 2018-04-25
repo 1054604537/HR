@@ -1,20 +1,24 @@
 package com.andy.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by 10546 on 2018/4/24.
  */
+//部门表实体类
 public class Dept implements Serializable {
     private int d_id;
     private String d_name;
+    private Date d_date;
 
     public Dept() {
     }
 
-    public Dept(int d_id, String d_name) {
+    public Dept(int d_id, String d_name, Date d_date) {
         this.d_id = d_id;
         this.d_name = d_name;
+        this.d_date = d_date;
     }
 
     public int getD_id() {
@@ -29,15 +33,26 @@ public class Dept implements Serializable {
         return d_name;
     }
 
+    public void setD_name(String d_name) {
+        this.d_name = d_name;
+    }
+
+    public Date getD_date() {
+        return d_date;
+    }
+
+    public void setD_date(Date d_date) {
+        this.d_date = d_date;
+    }
+
     @Override
     public String toString() {
         return "Dept{" +
                 "d_id=" + d_id +
                 ", d_name='" + d_name + '\'' +
+                ", d_date=" + d_date +
                 '}';
     }
 
-    public void setD_name(String d_name) {
-        this.d_name = d_name;
-    }
+
 }

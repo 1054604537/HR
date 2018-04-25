@@ -19,4 +19,20 @@ public class DeptServiceImpl implements DeptService {
     public List<Dept> allDept() {
         return deptMapper.allDept();
     }
+
+    @Override
+    public boolean saveDept(Dept dept) {
+        deptMapper.saveDept(dept);
+        return true;
+    }
+
+    @Override
+    public Dept getDept(Dept dept) {
+        return deptMapper.getDept(dept);
+    }
+
+    @Override
+    public boolean deleteDept(Dept dept) {
+        return deptMapper.deleteDept(dept);
+    }
 }

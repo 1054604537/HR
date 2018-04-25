@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.andy.dao.DeptMapper">
+    <insert id="saveDept">
+        insert into T_DEPT (D_ID, D_NAME,D_DATE) values (DEPT_SEQ.nextval,#{d_name},#{d_date})
+    </insert>
+    <delete id="deleteDept">
+        DELETE FROM T_DEPT WHERE D_ID=#{d_id}
+    </delete>
     <select id="allDept" resultType="com.andy.model.Dept">
-        select D_ID,D_NAME from T_DEPT
+        select D_ID,D_NAME,D_DATE from T_DEPT
+    </select>
+    <select id="getDept" resultType="com.andy.model.Dept">
+        select * from T_DEPT WHERE D_NAME=#{d_name}
     </select>
 </mapper>

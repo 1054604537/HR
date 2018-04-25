@@ -7,17 +7,19 @@ import java.io.Serializable;
  */
 //正式员工表实体类
 public class Emp implements Serializable{
-    private int e_id;
+    private int e_eid;//顺序id
+    private String e_id;//员工编号
     private String e_name;
     private String e_sex;
-    private int e_phone;
+    private String e_phone;
     private String e_email;
     private int d_id;//部门id
 
     public Emp() {
     }
 
-    public Emp(int e_id, String e_name, String e_sex, int e_phone, String e_email, int d_id) {
+    public Emp(int e_eid, String e_id, String e_name, String e_sex, String e_phone, String e_email, int d_id) {
+        this.e_eid = e_eid;
         this.e_id = e_id;
         this.e_name = e_name;
         this.e_sex = e_sex;
@@ -26,11 +28,19 @@ public class Emp implements Serializable{
         this.d_id = d_id;
     }
 
-    public int getE_id() {
+    public int getE_eid() {
+        return e_eid;
+    }
+
+    public void setE_eid(int e_eid) {
+        this.e_eid = e_eid;
+    }
+
+    public String getE_id() {
         return e_id;
     }
 
-    public void setE_id(int e_id) {
+    public void setE_id(String e_id) {
         this.e_id = e_id;
     }
 
@@ -50,11 +60,11 @@ public class Emp implements Serializable{
         this.e_sex = e_sex;
     }
 
-    public int getE_phone() {
+    public String getE_phone() {
         return e_phone;
     }
 
-    public void setE_phone(int e_phone) {
+    public void setE_phone(String e_phone) {
         this.e_phone = e_phone;
     }
 
@@ -77,7 +87,8 @@ public class Emp implements Serializable{
     @Override
     public String toString() {
         return "Emp{" +
-                "e_id=" + e_id +
+                "e_eid=" + e_eid +
+                ", e_id=" + e_id +
                 ", e_name='" + e_name + '\'' +
                 ", e_sex='" + e_sex + '\'' +
                 ", e_phone=" + e_phone +

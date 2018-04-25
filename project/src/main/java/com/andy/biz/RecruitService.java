@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface RecruitService {
     List<Recruit> allRecruit();
+    boolean addRecruit(Recruit recruit);//添加发布简历
+    boolean deleteRecruit(int rid);//根据顺序reid
 }

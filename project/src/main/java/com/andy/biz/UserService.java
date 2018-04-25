@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface UserService {
     boolean addUser(User user);
+    User getUser(User user);//判断重复
     List<User> allUser();
     User findUser(User user);
     User fingUserByName(String name);

@@ -11,4 +11,5 @@ public interface InviteService {
     List<Invite> userMassageByUid(Invite invite);//uid查出用户的信息
     boolean isOrNoAccept(Invite invite);//用户是否接受面试，添加记录代表接收面试，，不接受部点击添加,
     List<Invite> allInvite();//已接受面试的员工及办入职信息
+    boolean updateAlllo(Invite invite);//分配状态
 }

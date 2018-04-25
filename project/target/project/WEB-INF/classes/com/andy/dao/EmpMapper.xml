@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.andy.dao.EmpMapper">
+    <insert id="addEmp">
+     insert into T_EMP (E_EID,E_ID,E_NAME,E_SEX,E_PHONE,E_EMAIL,D_ID) values (EMP_SEQ.nextval,#{e_id},#{e_name},#{e_sex},#{e_phone},#{e_email},#{d_id})
+    </insert>
+    <select id="getEmp" resultType="com.andy.model.Emp">
+        select E_EID,E_ID,E_NAME,E_PHONE,E_EMAIL,E_SEX,D_ID from T_EMP where D_ID=#{d_id}
+    </select>
 </mapper>

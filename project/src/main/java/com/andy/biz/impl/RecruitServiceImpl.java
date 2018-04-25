@@ -23,4 +23,16 @@ public class RecruitServiceImpl implements RecruitService {
        }
         return null;
     }
+
+    @Override
+    public boolean addRecruit(Recruit recruit) {
+        recruitMapper.addRecruit(recruit);
+        return true;
+    }
+
+    @Override
+    public boolean deleteRecruit(int rid) {
+        recruitMapper.deleteRecruit(rid);
+        return false;
+    }
 }

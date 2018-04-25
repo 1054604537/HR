@@ -68,6 +68,9 @@
      from T_USER tu,T_RESUME tr
      where tu.U_ID=#{uid}
     </select>
+    <select id="getUser" resultType="com.andy.model.User">
+      select * from T_USER WHERE U_NAME=#{u_name}
+    </select>
     <resultMap id="jquery" type="User">
         <id property="u_id" column="U_ID"></id>
         <result property="u_name" column="U_NAME"></result>

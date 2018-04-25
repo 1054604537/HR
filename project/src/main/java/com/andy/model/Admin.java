@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Created by 10546 on 2018/4/24.
  */
+//管理员实体类
 public class Admin implements Serializable {
     private int a_id;
     private String a_name;

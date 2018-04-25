@@ -32,9 +32,16 @@ public class AdminController {
     @Resource
     private AdminService adminService;
     @Resource
-    private DeptMapper deptMapper;
-    @Resource
     private InviteService inviteService;
+    @Resource
+    private EmpService empService;
+    @Resource
+    private RecruitService recruitService;
+
+    @Resource
+    private DeptService deptService;
+
+
     @RequestMapping("/adminlogin")
     public String adminlogin(){
 
@@ -107,6 +114,56 @@ public class AdminController {
         return "adminsuccess";
     }
 
+
+    @RequestMapping("/recruit")
+    //管理发布招聘信息等
+    public String recruit(){
+        return "addAecruit";
+    }
+
+    @RequestMapping("/addRecruit")
+    public String addRecruit(HttpServletRequest request,HttpSession session){
+        String name=request.getParameter("job");
+        int number= Integer.parseInt(request.getParameter("number"));
+        String education=request.getParameter("education");
+        double sal= Integer.parseInt(request.getParameter("sal"));
+        String descrption=request.getParameter("descrption");
+
+        Recruit recruit =new Recruit();
+        recruit.setJ_name(name);
+        recruit.setRe_number(number);
+        recruit.setRe_education(education);
+        recruit.setRe_sal(sal);
+        recruit.setRe_descrption(descrption);
+        recruitService.addRecruit(recruit);
+        System.out.println("添加成功");
+        return "adminsuccess";
+    }
+
+    @RequestMapping("/allRecruit")
+    public String allRecruit(HttpSession session){
+        List<Recruit> list=recruitService.allRecruit();
+        if (list.size()!=0){
+            session.setAttribute("allRecruit",list);
+            return "allRecruit";
+        }else if(list.size()==0) {
+            session.setAttribute("error","无发布信息");
+            return "allRecruit";
+        }
+       return "";
+    }
+    @RequestMapping("deleteRecruit")
+    public String deleteRecruit(HttpServletRequest request,HttpSession session){
+        try {
+            int rid= Integer.parseInt(request.getParameter("delete"));
+            recruitService.deleteRecruit(rid);
+            System.out.println(rid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "adminsuccess";
+    }
+
     @RequestMapping("/allotToEmp")
     //管理员分配员工信息  自动获取简历上字段 账号为注册手机号码
     public String adminAllotToEmp(Model model,HttpSession session){
@@ -114,33 +171,132 @@ public class AdminController {
         int uid=0;
         for (Invite invite:invites){
             uid=invite.getI_uid();
+            if (invites.size()!=0){
+                model.addAttribute("invites",invites);
+            }else {
+                model.addAttribute("error","没有为分配人员");
+            }
         }
         List<User> users=userService.findUserById(uid);
-        model.addAttribute("invites",invites);
+
         session.setAttribute("users", users);
         System.out.println(invites);
-//        List<Dept> list=deptMapper.allDept();
-//        session.setAttribute("dept",list);//全部部门 分配选择
-//        System.out.println("分配入职员工的信息");
+
         return "allotToEmp";
     }
     @RequestMapping("/newAlloEmp")
     public String newAlloEmp(HttpSession session,HttpServletRequest request,Model model){
         System.out.println("来到分配职位工作");
-        List<Dept> list=deptMapper.allDept();//职位
-        //session.setAttribute("dept",list);//全部部门 分配选择
-        // System.out.println("分配入职员工的信息");
-
+        List<Dept> list=deptService.allDept();//职位
         Integer uid= Integer.parseInt(request.getParameter("uid"));
         int uid1=uid.intValue();
         System.out.println(uid+"111111");
-        //List<User>list1=userService.findUserByResume2(uid1);
+
         List<Resume>list1=resumeService.allResume(uid1);
-        //session.setAttribute("userAndResumes",list1);
+
+        model.addAttribute("dept",list);
         model.addAttribute("resume",list1);
-       // userService.findUserByResume();
+
         System.out.println(list1+"11111112312312");
         return "newAllotToEmp";
     }
+    @RequestMapping("/addEmp")
+    public String addEmp(HttpServletRequest request){
+        System.out.println("来到分配。。。");
+        String eid= (request.getParameter("id"));//员工编号
 
+        String ename=request.getParameter("name");//员工姓名
+
+        String esex=request.getParameter("sex");//员工性别
+
+        String ephone= (request.getParameter("phone"));//手机号码
+
+
+        String email=request.getParameter("email");//邮箱
+
+        int did= Integer.parseInt(request.getParameter("did"));//部门id
+
+        Emp emp=new Emp();
+        emp.setE_id(eid);
+        emp.setE_name(ename);
+        emp.setE_sex(esex);
+        emp.setE_phone(ephone);
+        emp.setE_email(email);
+        emp.setD_id(did);
+        int uid= Integer.parseInt(request.getParameter("uid"));
+        Invite invite=new Invite();
+        invite.setI_uid(uid);
+        if (empService.addEmp(emp)){
+            invite.setI_allo("已分配");
+            inviteMapper.updateAlllo(invite);
+            return "adminsuccess";
+        }
+       return "";
+    }
+
+
+    @RequestMapping("/saveDept")
+    public String saveDept(){
+        return "saveDept";
+    }
+    @RequestMapping("/addDept")
+    public String addDept(HttpServletRequest request,Model model) throws Exception{
+        System.out.println("来到添加部门。。。。");
+        Dept dept=new Dept();
+        String name=request.getParameter("dept");
+
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        String date=request.getParameter("date");
+        Date date1=simpleDateFormat.parse(date);
+        dept.setD_name(name);
+        dept.setD_date(date1);
+
+        Dept dept1=new Dept();
+        dept1.setD_name(name);
+
+        Dept dept2=deptService.getDept(dept1);
+        if (dept2==null){
+            deptService.saveDept(dept);
+            return "adminsuccess";
+        }else {
+            model.addAttribute("error","重复部门");
+            return "saveDept";
+        }
+    }
+
+
+    @RequestMapping("/allDept")
+    //全部部门（部门有员工不能删除）
+    public String deleteDept(HttpSession session){
+        List<Dept>list=deptService.allDept();//全部门
+        session.setAttribute("dept",list);
+        return "allDept";
+    }
+
+    @RequestMapping("/deDept")
+    public String deDept(HttpSession session,HttpServletRequest request){
+        System.out.println("来到删除部门 员工不能删除");
+        try {
+            int did= Integer.parseInt(request.getParameter("did"));
+            System.out.println(did);
+            Emp emp=new Emp();
+            emp.setD_id(did);
+            Emp emp1=empService.getEmp(emp);
+            Dept dept=new Dept();
+            dept.setD_id(did);
+            if (emp1!=null){
+                System.out.println("222222222");
+                session.setAttribute("null","存在人员不能删除");
+                return "allDept";
+            }else{
+                System.out.println("111111111+++++");
+                deptService.deleteDept(dept);
+                return "adminsuccess";
+            }
+           // System.out.println(emp1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 }

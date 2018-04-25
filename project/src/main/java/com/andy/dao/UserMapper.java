@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface UserMapper {
     boolean addUser(User user);
+    User getUser(User user);//判断重复
     List<User> allUser();//全部用户
     User findUser(User user);
     User fingUserByName(String name);

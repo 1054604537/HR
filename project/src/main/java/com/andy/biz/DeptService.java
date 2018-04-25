@@ -9,4 +9,7 @@ import java.util.List;
  */
 public interface DeptService {
     List<Dept> allDept();//全部部门
+    boolean saveDept(Dept dept);//添加部门
+    Dept getDept(Dept dept);
+    boolean deleteDept(Dept dept);//删除部门---id
 }

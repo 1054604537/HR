@@ -18,6 +18,7 @@ public class Invite implements Serializable {
     private String i_description;
     private int i_uid;
     private String i_isno_accept;
+    private String i_allo;
 
     public Invite() {
     }
@@ -38,6 +39,25 @@ public class Invite implements Serializable {
         this.i_description = i_description;
         this.i_uid = i_uid;
         this.i_isno_accept = i_isno_accept;
+    }
+
+    public Invite(int i_id, Date i_date, String i_job, String i_site, String i_description, int i_uid, String i_isno_accept, String i_allo) {
+        this.i_id = i_id;
+        this.i_date = i_date;
+        this.i_job = i_job;
+        this.i_site = i_site;
+        this.i_description = i_description;
+        this.i_uid = i_uid;
+        this.i_isno_accept = i_isno_accept;
+        this.i_allo = i_allo;
+    }
+
+    public String getI_allo() {
+        return i_allo;
+    }
+
+    public void setI_allo(String i_allo) {
+        this.i_allo = i_allo;
     }
 
     public int getI_id() {
@@ -106,6 +126,7 @@ public class Invite implements Serializable {
                 ", i_description='" + i_description + '\'' +
                 ", i_uid=" + i_uid +
                 ", i_isno_accept='" + i_isno_accept + '\'' +
+                ", i_allo='" + i_allo + '\'' +
                 '}';
     }
 }

@@ -8,6 +8,7 @@ import java.util.Date;
 /**
  * Created by 10546 on 2018/4/22.
  */
+//公司的简历库
 public class BossResume implements Serializable {
     private int br_id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
