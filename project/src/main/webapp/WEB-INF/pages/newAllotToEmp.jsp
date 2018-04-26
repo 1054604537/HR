@@ -34,7 +34,11 @@
     <c:forEach items="#{dept}" var="dept">
         ${dept.d_id}:${dept.d_name} <input type="radio" name="did" value="${dept.d_id}"/>
 
-    </c:forEach>
+    </c:forEach><br/>
+    职位编号：
+    <c:forEach items="${jobs}" var="print">
+        ${print.j_id}:${print.j_name}<input type="radio" name="jid" value="${print.j_id}"/>
+    </c:forEach><br/>
 
     <input type="submit" value="提交"/>
 </form>

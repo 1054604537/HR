@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.andy.dao.TrainMapper">
+    <insert id="saveTrian">
+        insert into T_TRAIN (T_ID, T_THEME, T_CONTENT, T_STARTDATE, T_ENDDATE, T_SITE, D_ID) values (TRAIN_SEQ.nextval
+        ,#{t_theme},#{t_content},#{t_startdate},#{t_enddate},#{t_site},#{d_id})
+    </insert>
+    <delete id="deleteTrian">
+        DELETE FROM T_TRAIN WHERE T_ID=#{t_id}
+    </delete>
+    <select id="allTrain" resultType="com.andy.model.Train">
+        select T_ID,T_THEME,T_CONTENT,T_STARTDATE,T_ENDDATE,T_SITE,D_ID from T_TRAIN
+    </select>
+</mapper>

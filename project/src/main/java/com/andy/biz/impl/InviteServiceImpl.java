@@ -39,4 +39,9 @@ public class InviteServiceImpl implements InviteService {
     public boolean updateAlllo(Invite invite) {
         return inviteMapper.updateAlllo(invite);
     }
+
+    @Override
+    public boolean outInviteToUser(Invite invite) {
+        return inviteMapper.outInviteToUser(invite);
+    }
 }

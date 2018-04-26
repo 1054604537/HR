@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.andy.dao.JobMapper">
+    <insert id="saveJob" parameterType="Job">
+        insert into T_JOB (J_ID, J_NAME, J_DATE, J_JSAL, D_DID) values (JOB_SEQ.nextval,#{j_name},#{j_date},#{j_jsal},#{d_did})
+    </insert>
+    <delete id="deleteJob">
+        DELETE FROM T_JOB WHERE J_ID=#{j_id}
+    </delete>
+    <select id="getJob" resultType="com.andy.model.Job">
+        select * from T_JOB where J_NAME=#{j_name}
+    </select>
+    <select id="allJob" resultType="com.andy.model.Job">
+        select * from T_JOB
+    </select>
+    <select id="jobToEmp" resultType="com.andy.model.Job">
+
+        select E_EID,E_ID,E_NAME,E_PHONE,E_SEX,E_EMAIL,tj.J_ID,J_NAME,J_JSAL,J_DATE from T_JOB tj,T_EMP te
+        WHERE tj.J_ID=te.J_ID
+
+    </select>
+</mapper>

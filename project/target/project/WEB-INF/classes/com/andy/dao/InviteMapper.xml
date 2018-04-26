@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.andy.dao.InviteMapper">
     <insert id="outInviteToUser">
-        insert into T_INVITE(I_ID, I_JOB, I_DATE, I_SITE, I_DESCRPTION,I_UID) VALUES (INVITE_SEQ.nextval,#{i_job},#{i_date},#{i_site},#{i_description},#{i_uid})
+        insert into T_INVITE(I_ID, I_JOB, I_DATE, I_SITE, I_DESCRPTION,I_UID,I_ISNO_ACCEPT,I_ALLO) VALUES (INVITE_SEQ.nextval,#{i_job},#{i_date},#{i_site},#{i_description},#{i_uid},#{i_isno_accept},#{i_allo})
     </insert>
     <update id="isOrNoAccept">
         update T_INVITE set  I_ISNO_ACCEPT=#{i_isno_accept}  where i_uid=#{i_uid}

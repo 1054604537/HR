@@ -12,4 +12,7 @@ public interface DeptMapper {
     boolean saveDept(Dept dept);//添加部门
     boolean deleteDept(Dept dept);//删除部门---id
     Dept getDept(Dept dept);
+
+    List<Dept> deptToJob();//部门的一对多
+
 }

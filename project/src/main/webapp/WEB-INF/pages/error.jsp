@@ -18,5 +18,6 @@
 </head>
 <body>
 ${error}
+${deleteJob}
 </body>
 </html>

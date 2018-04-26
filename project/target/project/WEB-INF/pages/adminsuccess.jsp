@@ -62,14 +62,27 @@
     <h3>职位的操作</h3>
     <ul>
         <li>
-            <a href="#">增加职位</a>
+            <a href="saveJob">增加职位</a>
+        </li>
+        <li>
+            <a href="queryJob">查询全部职位及对应的部门</a>
+        </li>
+    </ul>
+</div>
+
+<div style="float: inherit;width: 750px;background:royalblue">
+    <h3>培训中心</h3>
+    <ul>
+        <li>
+            <a href="allTrain">查看所有培训信息（查）</a>
+        </li>
+        <li>
+            <a href="saveTrain">管理员发布培训信息（增）</a>
         </li>
     </ul>
 </div>
 
 
 </div>
-
-
 </body>
 </html>

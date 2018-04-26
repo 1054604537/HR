@@ -22,25 +22,25 @@ import java.util.List;
 @Controller
 public class AdminController {
     @Resource
-    private UserService userService;
+    private UserService userService;//用户
     @Resource
-    private BossResumeService bossResumeService;
+    private BossResumeService bossResumeService;//公司简历库
     @Resource
-    private ResumeService resumeService;
+    private ResumeService resumeService;//简历
     @Resource
-    private InviteMapper inviteMapper;
+    private AdminService adminService;//管理员
     @Resource
-    private AdminService adminService;
+    private InviteService inviteService;//邀请
     @Resource
-    private InviteService inviteService;
+    private EmpService empService;//员工
     @Resource
-    private EmpService empService;
+    private RecruitService recruitService;//招聘
     @Resource
-    private RecruitService recruitService;
-
+    private DeptService deptService;//部门
     @Resource
-    private DeptService deptService;
-
+    private JobService jobService;//职位
+    @Resource
+    private TrainService trainService;//培训
 
     @RequestMapping("/adminlogin")
     public String adminlogin(){
@@ -108,8 +108,10 @@ public class AdminController {
         invite.setI_site(site);
         invite.setI_description(des);
         invite.setI_uid(uid);
+        invite.setI_isno_accept("未接受");
+        invite.setI_allo("未分配");
         System.out.println("111111111111"+uid);
-        inviteMapper.outInviteToUser(invite);
+        inviteService.outInviteToUser(invite);
         session.setAttribute("invite",invite);//存入邀请表session
         return "adminsuccess";
     }
@@ -117,12 +119,15 @@ public class AdminController {
 
     @RequestMapping("/recruit")
     //管理发布招聘信息等
-    public String recruit(){
+    public String recruit(Model model){
+        List<Job>list=jobService.allJob();
+        model.addAttribute("job",list);
         return "addAecruit";
     }
 
     @RequestMapping("/addRecruit")
     public String addRecruit(HttpServletRequest request,HttpSession session){
+
         String name=request.getParameter("job");
         int number= Integer.parseInt(request.getParameter("number"));
         String education=request.getParameter("education");
@@ -193,29 +198,29 @@ public class AdminController {
         System.out.println(uid+"111111");
 
         List<Resume>list1=resumeService.allResume(uid1);
-
+        List<Job>jobList=jobService.allJob();
         model.addAttribute("dept",list);
         model.addAttribute("resume",list1);
-
+        model.addAttribute("jobs",jobList);//职位的全部
         System.out.println(list1+"11111112312312");
         return "newAllotToEmp";
     }
     @RequestMapping("/addEmp")
-    public String addEmp(HttpServletRequest request){
+    public String addEmp(HttpServletRequest request) throws Exception{
         System.out.println("来到分配。。。");
         String eid= (request.getParameter("id"));//员工编号
 
         String ename=request.getParameter("name");//员工姓名
-
         String esex=request.getParameter("sex");//员工性别
-
         String ephone= (request.getParameter("phone"));//手机号码
-
 
         String email=request.getParameter("email");//邮箱
 
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        String date=simpleDateFormat.format(new Date());
+        Date date1=simpleDateFormat.parse(date);
         int did= Integer.parseInt(request.getParameter("did"));//部门id
-
+        int jid= Integer.parseInt(request.getParameter("jid"));//职位id
         Emp emp=new Emp();
         emp.setE_id(eid);
         emp.setE_name(ename);
@@ -223,12 +228,14 @@ public class AdminController {
         emp.setE_phone(ephone);
         emp.setE_email(email);
         emp.setD_id(did);
+        emp.setJ_id(jid);
+        emp.setE_joindate(date1);
         int uid= Integer.parseInt(request.getParameter("uid"));
         Invite invite=new Invite();
         invite.setI_uid(uid);
         if (empService.addEmp(emp)){
             invite.setI_allo("已分配");
-            inviteMapper.updateAlllo(invite);
+            inviteService.updateAlllo(invite);
             return "adminsuccess";
         }
        return "";
@@ -293,10 +300,159 @@ public class AdminController {
                 deptService.deleteDept(dept);
                 return "adminsuccess";
             }
-           // System.out.println(emp1);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
+    }
+
+    @RequestMapping("/saveJob")
+    public String saveJob(Model model){
+        List<Dept>list=deptService.allDept();
+        model.addAttribute("dept",list);
+        return "saveJob";
+    }
+    @RequestMapping("/addJob")
+    //添加职位 同名不能添加
+    public String addJob(HttpServletRequest request,HttpSession session) throws Exception{
+        String jname=request.getParameter("jname");
+        Double jsal= Double.valueOf(request.getParameter("jsal"));
+        String date=request.getParameter("date");
+        String dname=request.getParameter("dname");//部门名称。。。。。
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        Date date1=simpleDateFormat.parse(date);
+        Dept dept=new Dept();
+        dept.setD_name(dname);
+        Dept dept1=deptService.getDept(dept);
+        int did=dept1.getD_id();//0111111111111111
+
+        Job job=new Job();
+        job.setJ_name(jname);
+        job.setJ_date(date1);
+        job.setJ_jsal(jsal);
+        job.setD_did(did);
+
+        Job job1=new Job();
+        job1.setJ_name(jname);
+
+        Job job2=jobService.getJob(job1);
+
+        session.setAttribute("job",job);
+        if (job2==null){
+            jobService.saveJob(job);
+
+            System.out.println("创建完成");
+            return "adminsuccess";
+        }else{
+            session.setAttribute("nullJob","已存在职位");
+            return "error2";
+        }
+    }
+
+    @RequestMapping("/queryJob")
+    public String queryJob(Model model,HttpSession session){
+        try {
+            List<Job>jobList=jobService.allJob();
+            List<Dept>list=deptService.deptToJob();
+            System.out.println(list);
+            session.setAttribute("deptTojob",list);
+            model.addAttribute("jobs",jobList);//存在的所有职位
+            return "queryJob";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       return "";
+    }
+
+    @RequestMapping("/deleteJob")
+    //删除职位 有人员不能删除
+    public String deleteJob(Model model,HttpServletRequest request){
+
+        System.out.println("来到职位的删除操作");
+        try {
+            List<Job>list=jobService.jobToEmp();
+            int jid= Integer.parseInt(request.getParameter("jid"));
+            Job job=new Job();
+            job.setJ_id(jid);
+
+            if (list.size()!=0){
+                System.out.println("存在员工不能删除+11111111111111111");
+                model.addAttribute("deleteJob","存在员工不能删除");
+                return "error";
+            }else if (list.size()==0){
+                System.out.println("可以删除+2222222222");
+                jobService.deleteJob(job);//删除职位信息
+                return "adminsuccess";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+    @RequestMapping("/allTrain")
+    //现有的所有培训信息
+    public String allTrain(Model model){
+        System.out.println("来到所有培训讯息");
+        try {
+            List<Train> list=trainService.allTrain();
+            List<Dept>list1=deptService.allDept();
+            model.addAttribute("train",list);
+            model.addAttribute("dept",list1);
+            return "allTrain";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       return "";
+    }
+    @RequestMapping("/saveTrain")
+    public String saveTrain(Model model){
+        List<Dept> list1= null;
+        try {
+            list1 = deptService.allDept();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("dept",list1);//选择发送的部门DID
+        return "saveTrain";
+    }
+    @RequestMapping("/addTrain")
+    public String addTrain(HttpServletRequest request) throws Exception{
+        System.out.println("来到发布培训讯息");
+        String theme=request.getParameter("theme");
+        String content=request.getParameter("content");
+        String startdate=request.getParameter("startdate");
+        String enddate=request.getParameter("enddate");
+        String site=request.getParameter("site");
+        int did= Integer.parseInt(request.getParameter("did"));
+
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        Date date1=simpleDateFormat.parse(startdate);
+        Date date2=simpleDateFormat.parse(enddate);
+
+        Train train=new Train();
+        train.setT_theme(theme);
+        train.setT_content(content);
+        train.setT_startdate(date1);
+        train.setT_enddate(date2);
+        train.setT_site(site);
+        train.setD_id(did);
+
+        trainService.saveTrian(train);
+        System.out.println("发布成功。。。");
+        return "adminsuccess";
+    }
+    @RequestMapping("/deleteTrain")
+    public String deleteTrain(HttpServletRequest request){
+        try {
+            int did= Integer.parseInt(request.getParameter("did"));
+            Train train=new Train();
+            train.setT_id(did);
+            trainService.deleteTrian(train);
+            System.out.println("删除成功。。。");
+            return "adminsuccess";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+      return "";
     }
 }

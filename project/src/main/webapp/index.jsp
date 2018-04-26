@@ -19,9 +19,7 @@
 <script type="text/javascript">
 </script>
 <script type="text/javascript">
-$.ajax({
 
-})
 </script>
   <body>
   <div>
@@ -51,9 +49,9 @@ $.ajax({
           </form>
 
       </div>
-          <a href="login2">已是客户？直接登录</a>
+      <a href="login2">已是客户？直接登录</a>
       <a href="adminlogin">管理员登录</a>
-      <a type="emlogin">员工登录</a>
+      <a href="empLogin">员工登录</a>
   </fieldset>
   <script type="text/javascript">
       function check(form) {
