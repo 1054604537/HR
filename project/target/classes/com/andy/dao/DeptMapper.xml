@@ -17,6 +17,9 @@
         select D_ID,D_NAME,J_ID,J_NAME,J_JSAL,D_DID from T_DEPT td,T_JOB tj
         where D_ID=D_DID
     </select>
+    <select id="getDeptById" resultType="com.andy.model.Dept">
+        select * from T_DEPT WHERE D_ID=#{d_id}
+    </select>
     <resultMap id="empAndJob" type="Dept">
         <id property="d_id" column="D_ID"></id>
         <result property="d_name" column="D_NAME"></result>

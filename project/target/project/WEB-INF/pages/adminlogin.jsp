@@ -23,14 +23,14 @@
         <form action="adminlogin1" method="post" accept-charset="utf-8" onsubmit="check(this);return false;">
             <div class="name">
                 账号：
-                <input type="text" name="name" value='' autofocus id="username" onblur="hadoop()"/><span id="message"></span>
+                <input type="text" name="name" value='' autofocus id="username" onblur="hadoop()"  required="required"/><span id="message"></span>
             </div>
             <div class="pass">
-                密码： <input type="password" name="pass"  value=''/>
+                密码： <input type="password" name="pass"  value=''  required="required"/>
             </div>
             <div class="pass2">
                 确认：
-                <input type="password" name="pass2"  value=''/>
+                <input type="password" name="pass2"  value=''  required="required"/>
             </div>
             <input type="submit" value="登录">
         </form>

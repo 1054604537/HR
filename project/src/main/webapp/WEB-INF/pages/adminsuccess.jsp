@@ -82,6 +82,16 @@
     </ul>
 </div>
 
+    <div style="float: inherit;width: 750px;background:chartreuse">
+        <ul>
+            <li>
+                <a href="addRewAndPub">对员工的奖惩管理（奖励 受罚）</a>
+            </li>
+            <li>
+                <a href="seeAllEmpRewAndPub">查看所有员工的奖惩记录</a>
+            </li>
+        </ul>
+    </div>
 
 </div>
 </body>

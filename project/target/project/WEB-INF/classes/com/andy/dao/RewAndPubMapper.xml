@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.andy.dao.RewAndPubMapper">
+    <insert id="addRewAndPub">
+        insert into T_REWANDPUB (P_ID, P_TYPE, P_NUMBER, P_DATE, E_ID, P_DESCRPTION) values (REWANDPUB_SEQ.nextval,#{p_type},#{p_number},#{p_date},#{e_id},#{p_descrption})
+    </insert>
+    <select id="allRewAndPub" resultType="com.andy.model.RewAndPub">
+        select * from T_REWANDPUB
+    </select>
+    <select id="empToRewAndPub" resultType="com.andy.model.RewAndPub">
+        select * from T_REWANDPUB WHERE E_ID=#{e_id}
+    </select>
+</mapper>

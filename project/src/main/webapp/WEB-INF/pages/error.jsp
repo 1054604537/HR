@@ -19,5 +19,6 @@
 <body>
 ${error}
 ${deleteJob}
+${sessionScope.error2}
 </body>
 </html>

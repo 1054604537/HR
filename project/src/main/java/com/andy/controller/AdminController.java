@@ -4,8 +4,11 @@ import com.andy.biz.*;
 import com.andy.dao.DeptMapper;
 import com.andy.dao.InviteMapper;
 import com.andy.model.*;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
@@ -41,6 +44,8 @@ public class AdminController {
     private JobService jobService;//职位
     @Resource
     private TrainService trainService;//培训
+    @Resource
+    private RewAndPubService rewAndPubService;
 
     @RequestMapping("/adminlogin")
     public String adminlogin(){
@@ -454,5 +459,45 @@ public class AdminController {
             e.printStackTrace();
         }
       return "";
+    }
+    @RequestMapping("/addRewAndPub")
+    //对员工进行奖惩
+    public String addRewAndPub(){
+        return "addRewAndPub";
+    }
+    @RequestMapping("/addRewAndPub1")
+    //对员工进行奖惩
+    public String addRewAndPub1(HttpServletRequest request)throws Exception{
+        System.out.println("管理员对员工进行奖惩");
+        String name=request.getParameter("name");
+        int number= Integer.parseInt(request.getParameter("number"));
+        String date= request.getParameter("date");
+        String des=request.getParameter("descption");
+        String eid=(request.getParameter("eid"));
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+
+        Date date1=simpleDateFormat.parse(date);
+
+        RewAndPub rewAndPub=new RewAndPub();
+        rewAndPub.setP_type(name);
+        rewAndPub.setP_number(number);
+        rewAndPub.setP_date(date1);
+        rewAndPub.setE_id(eid);
+        rewAndPub.setP_descrption(des);
+        rewAndPubService.addRewAndPub(rewAndPub);
+        return "adminsuccess";
+    }
+    @RequestMapping("/seeAllEmpRewAndPub")
+    //查看奖惩
+    public String seeAllEmpRewAndPub(Model model){
+        List<RewAndPub>list=rewAndPubService.allRewAndPub();
+        if (list.size()==0){
+            model.addAttribute("seeAllEmpRewAndPubIsNull",list);
+            return "error";
+        }else if(list.size()!=0){
+            model.addAttribute("seeAllEmpRewAndPub",list);
+            return "seeAllEmpRewAndPub";
+        }
+        return null;
     }
 }

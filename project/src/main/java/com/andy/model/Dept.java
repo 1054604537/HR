@@ -12,6 +12,7 @@ public class Dept implements Serializable {
     private String d_name;
     private Date d_date;
     private List<Job> jobs=new ArrayList<Job>();//部门对应对各职位
+
     public Dept() {
     }
 

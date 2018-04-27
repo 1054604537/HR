@@ -30,7 +30,7 @@
 <fieldset>
     <form action="empLogin1" method="post" onsubmit="check(this);return false">
         <div class="box">
-            请输入您是账号：<input type="text" placeholder="账号" autofocus name="name"/><br/>
+            请输入您是账号：<input type="text" placeholder="账号" autofocus name="name"  required="required"/><br/>
         </div>
         <input type="submit" value="登录">
         <input type="submit" value="取消">

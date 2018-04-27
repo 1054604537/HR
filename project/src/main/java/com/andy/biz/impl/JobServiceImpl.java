@@ -42,4 +42,9 @@ public class JobServiceImpl implements JobService {
     public boolean deleteJob(Job job) {
         return jobMapper.deleteJob(job);
     }
+
+    @Override
+    public Job getJobById(Job job) {
+        return jobMapper.getJobById(job);
+    }
 }

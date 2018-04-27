@@ -27,6 +27,7 @@
             <th>性别</th>
             <th>联系电话</th>
             <th>邮箱</th>
+            <th>入职日期</th>
         </tr>
 
             <tr>
@@ -35,6 +36,7 @@
                 <td>${detail.e_sex}</td>
                 <td>${detail.e_phone}</td>
                 <td>${detail.e_email}</td>
+                <td>${detail.e_joindate}</td>
             </tr>
 
     </table>

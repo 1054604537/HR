@@ -11,4 +11,7 @@
     <select id="allTrain" resultType="com.andy.model.Train">
         select T_ID,T_THEME,T_CONTENT,T_STARTDATE,T_ENDDATE,T_SITE,D_ID from T_TRAIN
     </select>
+    <select id="getTrian" resultType="com.andy.model.Train">
+        select * from T_TRAIN WHERE D_ID=#{d_id}
+    </select>
 </mapper>

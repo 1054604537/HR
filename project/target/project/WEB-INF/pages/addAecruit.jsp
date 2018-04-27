@@ -29,10 +29,10 @@
 
 
 
-        招聘人数:<input type="number" name="number" placeholder="人数"/><br/>
-        学历要求：<input type="text" name="education" placeholder="学历"/><br/>
-        薪资：<input type="text" name="sal" placeholder="薪资"/><br/>
-        其他描述:<input type="text" name="descrption" placeholder="其他描述"/><br/>
+        招聘人数:<input type="number" name="number" placeholder="人数"  required="required"/><br/>
+        学历要求：<input type="text" name="education" placeholder="学历"  required="required"/><br/>
+        薪资：<input type="text" name="sal" placeholder="薪资"  required="required"/><br/>
+        其他描述:<input type="text" name="descrption" placeholder="其他描述"  required="required"/><br/>
         <input type="submit" value="发布"/>
     </form>
 </body>

@@ -11,4 +11,5 @@ public interface TrainService {
     List<Train> allTrain();//全部招聘信息
     boolean saveTrian(Train train);//添加培训消息
     boolean deleteTrian(Train train);//删除
+    List<Train> getTrian(Train train);
 }

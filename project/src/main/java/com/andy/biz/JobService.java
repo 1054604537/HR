@@ -13,4 +13,5 @@ public interface JobService {
     List<Job> allJob();//全部职位
     List<Job> jobToEmp();//本职位的对应的人员
     boolean deleteJob(Job job);//删除职位  根据职位id
+    Job getJobById(Job job);//根据职位id来查出职位
 }

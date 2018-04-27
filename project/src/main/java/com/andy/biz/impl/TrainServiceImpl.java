@@ -29,4 +29,9 @@ public class TrainServiceImpl implements TrainService {
     public boolean deleteTrian(Train train) {
         return trainMapper.deleteTrian(train);
     }
+
+    @Override
+    public List<Train> getTrian(Train train) {
+        return trainMapper.getTrian(train);
+    }
 }

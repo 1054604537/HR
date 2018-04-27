@@ -19,14 +19,14 @@
 </head>
 <body>
 <form method="post"  action="addre">
-    姓名：<input type="text" name="r_name" placeholder="请输入姓名" autofocus/><p/>
-    性别：<input type="text" name="r_sex" autofocus/><p/>
-    年龄：<input type="text" name="r_age"/><p/>
-    手机号码：<input type="text" name="r_phone"/><p/>
-    邮箱:<input type="email" name="r_email"/><p/>
-    出生日期：<input type="date" name="r_birthdate" id="id1"/><p/>
-    学历：<input type="text" name="r_education"/><p/>
-    个人描述：<input type="text" name="r_description"/><p/>
+    姓名：<input type="text" name="r_name" placeholder="请输入姓名" autofocus  required="required"/><p/>
+    性别：<input type="text" name="r_sex" autofocus required="required"/><p/>
+    年龄：<input type="text" name="r_age"  required="required"/><p/>
+    手机号码：<input type="text" name="r_phone"  required="required"/><p/>
+    邮箱:<input type="email" name="r_email"  required="required"/><p/>
+    出生日期：<input type="date" name="r_birthdate" id="id1" required="required"/><p/>
+    学历：<input type="text" name="r_education"  required="required"/><p/>
+    个人描述：<input type="text" name="r_description"  required="required"/><p/>
     <input type="hidden" value="${uid}" name="uid">
     <input type="submit" value="提交">
     <input type="reset" value="取消">

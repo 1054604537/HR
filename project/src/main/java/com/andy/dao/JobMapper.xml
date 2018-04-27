@@ -19,4 +19,7 @@
         WHERE tj.J_ID=te.J_ID
 
     </select>
+    <select id="getJobById" resultType="com.andy.model.Job">
+        select * from T_JOB WHERE J_ID=#{j_id}
+    </select>
 </mapper>

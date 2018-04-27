@@ -40,4 +40,9 @@ public class DeptServiceImpl implements DeptService {
     public List<Dept> deptToJob() {
         return deptMapper.deptToJob();
     }
+
+    @Override
+    public Dept getDeptById(Dept dept) {
+        return deptMapper.getDeptById(dept);
+    }
 }

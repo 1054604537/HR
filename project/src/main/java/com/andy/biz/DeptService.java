@@ -13,4 +13,5 @@ public interface DeptService {
     Dept getDept(Dept dept);
     boolean deleteDept(Dept dept);//删除部门---id
     List<Dept> deptToJob();//部门的一对多
+    Dept getDeptById(Dept dept);//根据id查对应的部门
 }

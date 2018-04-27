@@ -24,8 +24,8 @@ ${error}
 
     <form method="post" action="addDept" onsubmit="check(this);return false">
         <div class="name">
-            新部门：<input type="text" name="dept" value=""/><br/>
-            创建时间：<input type="date" name="date"/><br>
+            新部门：<input type="text" name="dept" value="" required="required"/><br/>
+            创建时间：<input type="date" name="date" required="required"/><br>
         </div>
         <input type="submit" value="添加"/>
     </form>

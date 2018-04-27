@@ -21,7 +21,7 @@
 <script type="text/javascript">
 
 </script>
-  <body>
+  <body style="background-color: royalblue">
   <div>
       欢迎来到xxx公司！
 

@@ -2,8 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.andy.dao.EmpMapper">
     <insert id="addEmp">
-     insert into T_EMP (E_EID,E_ID,E_NAME,E_SEX,E_PHONE,E_EMAIL,D_ID,J_ID) values (EMP_SEQ.nextval,#{e_id},#{e_name},#{e_sex},#{e_phone},#{e_email},#{d_id},#{j_id})
+     insert into T_EMP (E_EID,E_ID,E_NAME,E_SEX,E_PHONE,E_EMAIL,D_ID,J_ID,E_JOINDATE) values (EMP_SEQ.nextval,#{e_id},#{e_name},#{e_sex},#{e_phone},#{e_email},#{d_id},#{j_id},#{e_joindate})
     </insert>
+    <update id="updateEmp">
+        update T_EMP set E_ID =#{e_id} where e_eid=#{e_eid}
+    </update>
     <select id="getEmp" resultType="com.andy.model.Emp">
         select E_EID,E_ID,E_NAME,E_PHONE,E_EMAIL,E_SEX,D_ID,E_JOINDATE from T_EMP where D_ID=#{d_id}
     </select>
@@ -15,5 +18,11 @@
     </select>
     <select id="find" resultType="com.andy.model.Emp">
         select * from T_EMP where E_ID=#{e_id}
+    </select>
+    <select id="empToDeptAndJob" resultType="com.andy.model.Emp">
+      select * from T_EMP te,T_JOB tj,T_DEPT td WHERE te.D_ID=td.D_ID and te.J_ID=tj.J_ID and E_EID=#{e_eid}
+    </select>
+    <select id="getInfo" resultType="com.andy.model.Emp">
+        select * from T_EMP WHERE E_NAME LIKE '%${e_name}%' ;
     </select>
 </mapper>

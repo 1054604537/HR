@@ -41,4 +41,19 @@ public class EnpServiceImpl implements EmpService {
     public Emp find(Emp emp) {
         return empMapper.find(emp);
     }
+
+    @Override
+    public Emp empToDeptAndJob(Emp emp) {
+        return empMapper.empToDeptAndJob(emp);
+    }
+
+    @Override
+    public boolean updateEmp(Emp emp) {
+        return empMapper.updateEmp(emp);
+    }
+
+    @Override
+    public List<Emp> getInfo(Emp emp) {
+        return empMapper.getInfo(emp);
+    }
 }

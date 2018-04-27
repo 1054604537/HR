@@ -17,6 +17,7 @@ public class Emp implements Serializable{
     private int d_id;//部门id
     private int j_id;//职位id
     private Date e_joindate;//入职日期
+
     public Emp() {
     }
 

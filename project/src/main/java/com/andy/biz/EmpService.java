@@ -13,4 +13,7 @@ public interface EmpService {
     boolean addEmp(Emp emp);
     Emp getEmp(Emp emp);//查看部门的人员
     Emp find(Emp emp);
+    Emp empToDeptAndJob(Emp emp);//对应的部门职位工做
+    boolean updateEmp(Emp emp);//员工离职，隐藏名字
+    List<Emp> getInfo(Emp emp);
 }
