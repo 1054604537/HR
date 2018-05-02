@@ -20,10 +20,11 @@
 <body>
 
 <form action="newAlloEmp" method="post">
-  <c:forEach items="${sessionScope.users}" var="items">
-      <input type="hidden" value="${items.u_id}" name="uid" />
-      姓名：${items.u_name}<input type="submit" value="选择分配"/>
-  </c:forEach>
+
+        <c:forEach items="${sessionScope.users}" var="items">
+            <input type="hidden" value="${items.u_id}" name="uid" />
+            姓名：${items.u_name}<input type="submit" value="选择分配"/>
+        </c:forEach>
     ${error}
 </form>
 </body>

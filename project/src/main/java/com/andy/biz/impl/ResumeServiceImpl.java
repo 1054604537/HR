@@ -44,4 +44,14 @@ public class ResumeServiceImpl implements ResumeService {
     public List<Resume> allResume2() {
         return resumeMapper.allResume2();
     }
+
+    @Override
+    public Resume getResume(Resume resume) {
+        return resumeMapper.getResume(resume);
+    }
+
+    @Override
+    public boolean updateResume(Resume resume) {
+        return resumeMapper.updateResume(resume);
+    }
 }

@@ -4,6 +4,9 @@
     <insert id="addRewAndPub">
         insert into T_REWANDPUB (P_ID, P_TYPE, P_NUMBER, P_DATE, E_ID, P_DESCRPTION) values (REWANDPUB_SEQ.nextval,#{p_type},#{p_number},#{p_date},#{e_id},#{p_descrption})
     </insert>
+    <delete id="deleteRew">
+        DELETE FROM T_REWANDPUB WHERE P_ID=#{p_id}
+    </delete>
     <select id="allRewAndPub" resultType="com.andy.model.RewAndPub">
         select * from T_REWANDPUB
     </select>

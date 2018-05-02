@@ -11,7 +11,6 @@ import java.util.Date;
 //公司的简历库
 public class BossResume implements Serializable {
     private int br_id;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date br_date;
     private String br_job;
     private String br_uname;

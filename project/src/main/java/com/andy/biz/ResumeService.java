@@ -13,4 +13,6 @@ public interface ResumeService {
     boolean deleteResume(int rid);
     List<Resume> findResumeByUid(int uid);
     List<Resume> allResume2();//全部 用来判段是否存在数据
+    Resume getResume(Resume resume);//查
+    boolean  updateResume(Resume resume);//修改简历  根据 简历ID
 }

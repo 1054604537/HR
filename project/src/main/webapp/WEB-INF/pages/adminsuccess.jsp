@@ -40,20 +40,21 @@
 
         </ul>
     </div>
-
-
     <div style="float: inherit;width: 750px;background: rosybrown">
         <h3>部门的操作</h3>
         <ul>
             <li>
-                <a href="saveDept">增加公司部门（同名不能添加）</a>
+                <a href="all">查看公司现有的在职人员</a>
             </li>
             <li>
-                <a href="allDept">查看所有部门（删除，部门有员工不能删除）</a>
+                <a href="saveDept">增加公司部门</a>
+            </li>
+            <li>
+                <a href="allDept">查看所有部门</a>
             </li>
 
             <li>
-                <a href="allotToEmp">查看未分配工作人员--及入职人员分配操作（部门 职位 薪资 其他）</a>
+                <a href="allotToEmp">管理员对入职未分配工作人员--及入职人员分配操作（部门 职位 薪资 其他）</a>
             </li>
         </ul>
     </div>
@@ -88,7 +89,7 @@
                 <a href="addRewAndPub">对员工的奖惩管理（奖励 受罚）</a>
             </li>
             <li>
-                <a href="seeAllEmpRewAndPub">查看所有员工的奖惩记录</a>
+                <a href="seeAllEmpRewAndPub">查看所有员工的奖惩记录（删除记录）</a>
             </li>
         </ul>
     </div>

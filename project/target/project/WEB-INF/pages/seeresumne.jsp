@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 10546
@@ -33,22 +34,51 @@
             <c:forEach items="${resume}" var="item">
         <tr>
 
-              <td>${item.r_name}</td>
-              <td>${item.r_sex}</td>
-              <td>${item.r_age}</td>
-              <td>${item.r_phone}</td>
-              <td>${item.r_email}</td>
-              <td>${item.r_birthdate}</td>
-              <td>${item.r_education}</td>
-              <td>${item.r_description}</td>
+              <td>${item.r_name}
+
+              </td>
+              <td>${item.r_sex}
+
+              </td>
+
+              <td>${item.r_age}
+
+              </td>
+              <td>${item.r_phone}
+
+              </td>
+              <td>${item.r_email}
+
+              </td>
+              <td>
+                  ${item.r_birthdate}
+
+              </td>
+              <td>${item.r_education}
+
+              </td>
+              <td>${item.r_description}
+
+              </td>
+
               <td>
                 <form method="post" action="deleteres">
                     <input type="hidden" name="rid" value="${item.r_id}"/>
                     <input type="submit" value="删除">
                 </form>
               </td>
+
         </tr>
+
+
             </c:forEach>
+
     </table>
+
+    <form method="post" action="updateResume">
+        修改描述： <input type="text" name="descrption" required="required"/>
+        <input type="submit" value="修改"/>
+    </form>
+
 </body>
 </html>

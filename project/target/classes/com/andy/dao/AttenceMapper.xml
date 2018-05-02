@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.andy.dao.AttenceMapper">
+    <insert id="saveClockAttence">
+        insert into T_ATTENCE (A_ID, A_CLOCK_IN,A_TYPE, E_EID) values (ATTENCE_SEQ.nextval,#{a_clock_in},#{a_type},#{e_eid})
+    </insert>
+    <insert id="endAttence">
+        insert into T_ATTENCE (A_ID,A_END_IN, A_TYPE, E_EID) values (ATTENCE_SEQ.nextval,#{a_end_in},#{a_type},#{e_eid})
+    </insert>
+    <select id="allAttence" resultType="com.andy.model.Attence">
+        select * from T_ATTENCE WHERE E_EID=#{e_eid}
+    </select>
+</mapper>

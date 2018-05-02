@@ -20,11 +20,18 @@
             text-decoration: none;
         }
     </STYLE>
+    <script type="text/javascript" src="js/jquery-3.1.0.js"></script>
+    <script>
+
+    </script>
 </head>
 <body>
     <h3>欢迎您：${sessionScope.emp.e_name}</h3>
     <div>
         <ul>
+            <li>
+                <a href="empUpdatePass">修改初始密码</a>
+            </li>
             <li>
                 <a href="seeEmp">查看个人基本信息</a>
             </li>
@@ -35,22 +42,31 @@
                 <a href="seeTrain">查看个人培训信息</a>
             </li>
             <li>
-                <a href="seePerformance">查看绩效</a>
+                <a href="seePerformance">查看绩效（奖惩）</a>
             </li>
             <li>
                 <a href="seeDeptAndJob">查看部门职位</a>
             </li>
             <li>
-                <a href="#">查看你个人考勤</a>
+                <a href="seeAttence">查看你个人考勤</a>
             </li>
             <li>
                 <a href="detailList">查看公司通讯录</a>
             </li>
             <li>
-                <a href="dimission">提出离职(点击后不可修改，慎用！！！)</a>
+                <a href="dimission" onclick="return confirm('确定离职？')">提出离职(点击后不可修改，慎用！！！)</a>
             </li>
         </ul>
     </div>
-
+    <div class="box">
+        <ul>
+            <li>
+              <a href="clockin" onclick="return confirm('上班打卡？')">上班打卡</a>
+            </li>
+            <li>
+               <a href="endin" onclick="return confirm('下班打卡？')">下班打卡</a>
+            </li>
+        </ul>
+    </div>
 </body>
 </html>

@@ -96,26 +96,41 @@ public class UserController {
     @RequestMapping("/addre")
     public String addre(Resume resume,Model model,HttpServletRequest request,HttpSession session){
         User user= (User) session.getAttribute("user");
-        int uid= Integer.parseInt(request.getParameter("uid"));
+       // int uid= Integer.parseInt(request.getParameter("uid"));
         resume.setU_id(user.getU_id());
         System.out.println("添加个人简历");
 
-        List<Resume>list=resumeService.allResume2();
-        System.out.println(list);
-        for (int i =0;i<list.size();i++){
-           if (list.get(i).getU_id()==user.getU_id()){//有记录
-               System.out.println("xxxxxxxxxxxxxxxx");
-               return "seeresumne";
-           }else {
-               System.out.println("ssssssssssbbbbbbbbb");
-               model.addAttribute("resume",resume);//存简历
-               resumeService.addResume(resume);
-               System.out.println(resume);
-               return "success";
-           }
+        Resume resume1=new Resume();
+        resume1.setU_id(user.getU_id());
+
+        Resume resume2=resumeService.getResume(resume1);
+        if (resume2!=null){
+            System.out.println("xxxxxxxxxxxxxxxx");
+            session.setAttribute("resumeIsnull","已存在简历，返回首页前往查看");
+            return "error";
+        }else{
+            System.out.println("ssssssssssbbbbbbbbb");
+            model.addAttribute("resume",resume);//存简历
+            resumeService.addResume(resume);
+            System.out.println(resume);
+            return "success";
         }
-        return "";
     }
+    @RequestMapping("/updateResume")
+    public String updateResume(HttpServletRequest request,HttpSession session) throws ParseException {
+        System.out.println("来到修改简历");
+        User user= (User) session.getAttribute("user");
+        String descrption=request.getParameter("descrption");
+        Resume resume=new Resume();
+        resume.setU_id(user.getU_id());
+        resume.setR_description(descrption);
+
+        resumeService.updateResume(resume);
+        System.out.println(resume);
+        return "success";
+
+    }
+
     @RequestMapping("/seeresumne")
     public String seeresumne(Model model,HttpSession session){
         User user= (User) session.getAttribute("user");
@@ -236,4 +251,19 @@ public class UserController {
             inviteService.updateAlllo(invite);//状态时未分配。。
             return "success";
         }
+    @RequestMapping("/userSeeAllRecruit")
+    public String userSeeAllRecruit(HttpSession session){
+        List<Recruit>list=recruitService.allRecruit();
+        if (list.size()!=0){
+            session.setAttribute("seeAllRecruit",list);
+            return "userSeeAllRecruit";
+        }else if(list.size()==0) {
+            session.setAttribute("error","无发布信息");
+            return "userSeeAllRecruit";
+        }
+        return "";
+    }
+
+
+
 }

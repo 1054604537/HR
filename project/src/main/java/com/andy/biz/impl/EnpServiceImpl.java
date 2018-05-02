@@ -56,4 +56,9 @@ public class EnpServiceImpl implements EmpService {
     public List<Emp> getInfo(Emp emp) {
         return empMapper.getInfo(emp);
     }
+
+    @Override
+    public boolean updatepass(Emp emp) {
+        return empMapper.updatepass(emp);
+    }
 }

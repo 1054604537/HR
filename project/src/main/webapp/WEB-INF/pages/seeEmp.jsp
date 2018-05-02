@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 10546
@@ -36,7 +37,9 @@
                 <td>${detail.e_sex}</td>
                 <td>${detail.e_phone}</td>
                 <td>${detail.e_email}</td>
-                <td>${detail.e_joindate}</td>
+                <td>
+                    <fmt:formatDate value="${detail.e_joindate}" type="date" dateStyle="long"/>
+                </td>
             </tr>
 
     </table>

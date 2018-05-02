@@ -11,4 +11,5 @@ public interface RewAndPubMapper {
     boolean addRewAndPub(RewAndPub rewAndPub);//管理员对员共的奖惩操作
     List<RewAndPub> allRewAndPub();//全部
     List<RewAndPub> empToRewAndPub(RewAndPub rewAndPub);//员工对应的奖惩
+    boolean deleteRew(RewAndPub rewAndPub);//删除记录
 }

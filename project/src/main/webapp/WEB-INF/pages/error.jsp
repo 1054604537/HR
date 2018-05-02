@@ -20,5 +20,7 @@
 ${error}
 ${deleteJob}
 ${sessionScope.error2}
+${sessionScope.resumeIsnull}
+${null11}
 </body>
 </html>

@@ -30,4 +30,9 @@ public class RewAndPubServiceImpl implements RewAndPubService {
     public List<RewAndPub> empToRewAndPub(RewAndPub rewAndPub) {
         return rewAndPubMapper.empToRewAndPub(rewAndPub);
     }
+
+    @Override
+    public boolean deleteRew(RewAndPub rewAndPub) {
+        return rewAndPubMapper.deleteRew(rewAndPub);
+    }
 }

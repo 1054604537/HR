@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 10546
@@ -48,7 +49,9 @@
         </tr>
         <c:forEach var="items" items="${bossresumes}">
             <tr>
-                <td>${items.br_id}</td>
+                <td>
+                    ${items.br_id}
+                        </td>
                 <td>${items.br_date}</td>
                 <td>${items.br_job}</td>
                 <td>${items.br_uname}</td>

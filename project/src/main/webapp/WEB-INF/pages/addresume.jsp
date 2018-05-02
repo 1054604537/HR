@@ -15,14 +15,18 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>添加个人简历</title>
-
+    <script src="js/jquery-3.1.0.js"></script>
+    <script>
+    </script>
 </head>
 <body>
 <form method="post"  action="addre">
     姓名：<input type="text" name="r_name" placeholder="请输入姓名" autofocus  required="required"/><p/>
     性别：<input type="text" name="r_sex" autofocus required="required"/><p/>
-    年龄：<input type="text" name="r_age"  required="required"/><p/>
+    年龄：<input type="text" name="r_age"  required="required" class="text1" id="userId"/><span id="spanId"></span><p/>
+
     手机号码：<input type="text" name="r_phone"  required="required"/><p/>
+
     邮箱:<input type="email" name="r_email"  required="required"/><p/>
     出生日期：<input type="date" name="r_birthdate" id="id1" required="required"/><p/>
     学历：<input type="text" name="r_education"  required="required"/><p/>

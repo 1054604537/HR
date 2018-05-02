@@ -220,7 +220,6 @@ public class AdminController {
         String ephone= (request.getParameter("phone"));//手机号码
 
         String email=request.getParameter("email");//邮箱
-
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
         String date=simpleDateFormat.format(new Date());
         Date date1=simpleDateFormat.parse(date);
@@ -235,6 +234,7 @@ public class AdminController {
         emp.setD_id(did);
         emp.setJ_id(jid);
         emp.setE_joindate(date1);
+        emp.setE_pass("111111");//默认密码为六个111111
         int uid= Integer.parseInt(request.getParameter("uid"));
         Invite invite=new Invite();
         invite.setI_uid(uid);
@@ -496,8 +496,28 @@ public class AdminController {
             return "error";
         }else if(list.size()!=0){
             model.addAttribute("seeAllEmpRewAndPub",list);
+
             return "seeAllEmpRewAndPub";
         }
         return null;
+    }
+    @RequestMapping("/deleteRew")
+    public String deleteRew(HttpServletRequest request){
+        int pid= 0;
+        try {
+            pid = Integer.parseInt(request.getParameter("pid"));
+            RewAndPub rewAndPub=new RewAndPub();
+            rewAndPub.setP_id(pid);
+            rewAndPubService.deleteRew(rewAndPub);
+            System.out.println("删除成功");
+            return "adminsuccess";
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+       return "";
+    }
+    @RequestMapping("/all")
+    public String seeAll(){
+        return "seeAll";
     }
 }

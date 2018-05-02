@@ -16,4 +16,5 @@ public interface EmpService {
     Emp empToDeptAndJob(Emp emp);//对应的部门职位工做
     boolean updateEmp(Emp emp);//员工离职，隐藏名字
     List<Emp> getInfo(Emp emp);
+    boolean updatepass(Emp emp);//修改密码
 }

@@ -21,38 +21,47 @@
 <script type="text/javascript">
 
 </script>
+<style>
+    a{
+        text-decoration: none;
+    }
+    div{
+        text-align: center;
+    }
+</style>
   <body style="background-color: royalblue">
   <div>
-      欢迎来到xxx公司！
-
+      <a href="userSeeAllRecruit">查看本公司招聘信息</a>
   </div>
-  <fieldset>
-      <legend>注册</legend>
-      <div style="padding: 40px 100px 200px 100px">
+      <div style="border: 1px solid black;text-align: center">
           <form action="addUser" method="get" accept-charset="utf-8" onsubmit="check(this);return false;">
               <div class="name">
                   账号：
-                  <input type="text" name="name" value='' autofocus /><span></span>
+                  <input type="text" name="name" value='' autofocus  onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"/>
               </div>
               <div class="pass">
-                  密码： <input type="password" name="pass"  value=''/>
+                  密码： <input type="password" name="pass"  value=''  onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"/>
               </div>
               <div class="pass2">
                   确认：
-                  <input type="password" name="pass2"  value=''/>
+                  <input type="password" name="pass2"  value=''  onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"/>
               </div>
               <div>
                   邮箱：<input type="email" name="email" >
               </div>
               <input type="submit" value="注册">
-
           </form>
-
       </div>
+
+  <div>
       <a href="login2">已是客户？直接登录</a>
+  </div>
+  <div>
       <a href="adminlogin">管理员登录</a>
+  </div>
+  <div>
       <a href="empLogin">员工登录</a>
-  </fieldset>
+  </div>
   <script type="text/javascript">
       function check(form) {
           if (form.name.value =='') {

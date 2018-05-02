@@ -10,6 +10,7 @@ import java.util.Date;
 public class Emp implements Serializable{
     private int e_eid;//顺序id
     private String e_id;//员工编号
+    private String e_pass;//密码。
     private String e_name;
     private String e_sex;
     private String e_phone;
@@ -19,6 +20,19 @@ public class Emp implements Serializable{
     private Date e_joindate;//入职日期
 
     public Emp() {
+    }
+
+    public Emp(int e_eid, String e_id, String e_pass, String e_name, String e_sex, String e_phone, String e_email, int d_id, int j_id, Date e_joindate) {
+        this.e_eid = e_eid;
+        this.e_id = e_id;
+        this.e_pass = e_pass;
+        this.e_name = e_name;
+        this.e_sex = e_sex;
+        this.e_phone = e_phone;
+        this.e_email = e_email;
+        this.d_id = d_id;
+        this.j_id = j_id;
+        this.e_joindate = e_joindate;
     }
 
     public Emp(int e_eid, String e_id, String e_name, String e_sex, String e_phone, String e_email, int d_id) {
@@ -126,11 +140,21 @@ public class Emp implements Serializable{
         this.e_joindate = e_joindate;
     }
 
+    public String getE_pass() {
+        return e_pass;
+    }
+
+    public void setE_pass(String e_pass) {
+        this.e_pass = e_pass;
+    }
+
+
     @Override
     public String toString() {
         return "Emp{" +
                 "e_eid=" + e_eid +
                 ", e_id='" + e_id + '\'' +
+                ", e_pass='" + e_pass + '\'' +
                 ", e_name='" + e_name + '\'' +
                 ", e_sex='" + e_sex + '\'' +
                 ", e_phone='" + e_phone + '\'' +

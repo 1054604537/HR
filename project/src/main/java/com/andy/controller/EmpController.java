@@ -1,13 +1,7 @@
 package com.andy.controller;
 
-import com.andy.biz.DeptService;
-import com.andy.biz.EmpService;
-import com.andy.biz.JobService;
-import com.andy.biz.TrainService;
-import com.andy.model.Dept;
-import com.andy.model.Emp;
-import com.andy.model.Job;
-import com.andy.model.Train;
+import com.andy.biz.*;
+import com.andy.model.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +11,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,6 +29,10 @@ public class EmpController {
     private TrainService trainService;
     @Resource
     private DeptService deptService;
+    @Resource
+    private RewAndPubService rewAndPubService;
+    @Resource
+    private AttenceService attenceService;
     @RequestMapping("/empLogin")
     public String empLogin(){
        return "empLogin";
@@ -41,19 +41,39 @@ public class EmpController {
     public String empLogin1(HttpServletRequest request, HttpSession session){
         System.out.println("员工登录");
         String eid= (request.getParameter("name"));
-        List<Emp>list=empService.allEmp();
-        for (Emp emp:list){
-            if (emp.getE_id().equals(eid)){
-                Emp emp1=new Emp();
-                emp1.setE_id(eid);
-                Emp emp2 =empService.find(emp1);
-                session.setAttribute("emp",emp2);
-                return "empLoginSuccess";
-            }else
-                return "empLogin";
+        String pass=request.getParameter("pass");
+        List<Emp>list=empService.allEmp();//全部用户资料
+        System.out.println(pass);
+        Emp emp=new Emp();
+        emp.setE_id(eid);
+        emp.setE_pass(pass);
+        Emp emp1=empService.login(emp);
+        if (emp1!=null){
+            session.setAttribute("emp",emp1);
+            return "empLoginSuccess";
+        }else{
+            return "empLogin";
         }
-      return "";
     }
+    @RequestMapping("/empUpdatePass")
+    public String empUpdatePass(){
+        return "empUpdatePass";
+    }
+    @RequestMapping("/empUpdaPass")
+    public String empUpdaPass(HttpSession session,HttpServletRequest request){
+        System.out.println("来到修改密码");
+        Emp emp= (Emp) session.getAttribute("emp");
+        String pass=request.getParameter("pass");
+        Emp emp1=new Emp();
+
+        emp1.setE_eid(emp.getE_eid());
+        emp1.setE_pass(pass);
+
+        System.out.println(emp1);
+        empService.updatepass(emp1);
+        return "empLogin";
+    }
+
     @RequestMapping("/seeEmp")
     //查看员工的个人信息
     public String seeEmp(HttpSession session, Model model){
@@ -63,8 +83,22 @@ public class EmpController {
     }
     @RequestMapping("seePerformance")
     //查看员工的绩效
-    public String seePerformance(HttpSession session){
-        return "seePerformance";
+    public String seePerformance(HttpSession session,Model model){
+        System.out.println("来到绩效");
+        Emp emp= (Emp) session.getAttribute("emp");
+        RewAndPub rewAndPub=new RewAndPub();
+        System.out.println(emp);
+        rewAndPub.setE_id(emp.getE_id());
+        List<RewAndPub>list=rewAndPubService.empToRewAndPub(rewAndPub);
+        if (list.size()!=0){
+            System.out.println("11111111111111");
+            model.addAttribute("empToRewAndPub",list);
+            return "seePerformance";
+        }else if(list.size()==0){
+            model.addAttribute("empToRewAndPubIsMull","无数据");
+            return "error";
+        }
+       return "";
     }
     @RequestMapping("/seeDeptAndJob")
     public String seeDeptAndJob(HttpSession session){
@@ -108,6 +142,29 @@ public class EmpController {
         }
         return "";
     }
+    @RequestMapping("/seeAttence")
+    public String seeAttence(HttpSession session,Model model){
+        //员工查看个人的考勤
+        System.out.println("来到员工查看个人的考勤");
+        Emp emp= (Emp) session.getAttribute("emp");
+
+        Attence attence=new Attence();
+        attence.setE_eid(emp.getE_eid());
+        List<Attence> list=attenceService.allAttence(attence);
+        if (list.size()==0){
+            model.addAttribute("null11","没有数据");
+            return "error";
+        }
+        if (list.size()!=0){
+            model.addAttribute("seeAttence",list);
+            model.addAttribute("emp",emp);
+            return "seeAttence";
+        }
+        return "";
+    }
+
+
+
 
     @RequestMapping("/dimission")
     //员工离职
@@ -135,5 +192,99 @@ public class EmpController {
     @ResponseBody
     public List<Emp> search(Emp emp) throws Exception{
         return empService.getInfo(emp);
+    }
+    @RequestMapping("/clockin")
+    //上班打卡
+    public String clockIn(HttpSession session) throws Exception{
+        System.out.println("来到上班打卡");
+        Emp emp= (Emp) session.getAttribute("emp");
+        Attence attence=new Attence();
+
+        RewAndPub rewAndPub=new RewAndPub();//奖惩记录
+
+        Date date=new Date();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("HH");
+        String str=simpleDateFormat.format(date);
+        int a=Integer.parseInt(str);
+        Date date1=new Date();
+        System.out.println(a+"111111111111");
+        if (a>0&&a<=9){
+            System.out.println("打卡+………………………………………………");
+            SimpleDateFormat simpleDateFormat1=new SimpleDateFormat("yyyy-MM-dd");
+            simpleDateFormat1.format(date1);
+            attence.setA_type("上班正常");
+        }
+        else if (a>9&&a<=24){
+            System.out.println("打卡+2222");
+            SimpleDateFormat simpleDateFormat1=new SimpleDateFormat("yyyy-MM-dd");
+            simpleDateFormat1.format(date1);
+            attence.setA_type("上班不正常");
+//            不正常 迟到的话是要罚钱的  在奖罚的类型中添加一条迟到的数据
+            System.out.println("来到迟到罚钱的页面 —+1111111");
+                rewAndPub.setP_type("迟到");
+                rewAndPub.setP_descrption("上班打卡迟到罚款");
+                rewAndPub.setP_date(date1);
+                rewAndPub.setP_number(-100);
+                rewAndPub.setE_id(emp.getE_id());
+                rewAndPubService.addRewAndPub(rewAndPub);
+                System.out.println("迟到的罚钱的页面+22222222222");
+        }
+        attence.setA_clock_in(date);
+        attence.setE_eid(emp.getE_eid());
+        System.out.println(attence);
+
+        attenceService.saveClockAttence(attence);
+        return "empLoginSuccess";
+    }
+
+    @RequestMapping("/endin")
+    //下班打卡
+    public String endIn(HttpSession session) throws Exception{
+        System.out.println("来到下班打卡");
+        Emp emp= (Emp) session.getAttribute("emp");
+        RewAndPub rewAndPub=new RewAndPub();//奖惩记录
+        Attence attence=new Attence();
+        Date date=new Date();
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("HH");
+        String str=simpleDateFormat.format(date);
+        int a=Integer.parseInt(str);
+        Date date1=new Date();
+        if (a==18){
+            SimpleDateFormat simpleDateFormat1=new SimpleDateFormat("yyyy-MM-dd");
+            simpleDateFormat1.format(date1);
+            attence.setA_type("下班正常");
+        }else if(a>18&&a<20){
+            SimpleDateFormat simpleDateFormat1=new SimpleDateFormat("yyyy-MM-dd");
+            simpleDateFormat1.format(date1);
+            attence.setA_type("加班");
+            //不正常 迟到的话是要罚钱的  在奖罚的类型中添加一条迟到的数据
+            System.out.println("来到迟到加班的页面 —+1111111");
+            rewAndPub.setP_type("加班");
+            rewAndPub.setP_descrption("加班奖励钱");
+            rewAndPub.setP_date(date1);
+            rewAndPub.setP_number(100);
+            rewAndPub.setE_id(emp.getE_id());
+            rewAndPubService.addRewAndPub(rewAndPub);
+            System.out.println("加班的奖励的页面+22222222222");
+        }
+        else if (a<18){
+            //早退
+            SimpleDateFormat simpleDateFormat1=new SimpleDateFormat("yyyy-MM-dd");
+            simpleDateFormat1.format(date1);
+            attence.setA_type("下班不正常");
+            System.out.println("早退的页面 —+1111111");
+            rewAndPub.setP_type("早退");
+            rewAndPub.setP_descrption("早退");
+            rewAndPub.setP_date(date1);
+            rewAndPub.setP_number(-300);
+            rewAndPub.setE_id(emp.getE_id());
+            rewAndPubService.addRewAndPub(rewAndPub);
+            System.out.println("早退罚钱的页面+22222222222");
+        }
+        attence.setA_end_in(date1);
+        attence.setE_eid(emp.getE_eid());
+        System.out.println(attence);
+        attenceService.endAttence(attence);
+        return "empLoginSuccess";
     }
 }

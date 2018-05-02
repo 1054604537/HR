@@ -15,7 +15,7 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title>全部简历</title>
+    <title>全部招聘信息</title>
 </head>
 <body>
 

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -26,16 +27,27 @@
             <th>操作时间</th>
             <th>原因</th>
             <th>员工编号</th>
-
+            <th>删除此记录</th>
         </tr>
 
        <c:forEach items="${seeAllEmpRewAndPub}" var="print">
            <tr>
                <td>${print.p_type}</td>
                <td>${print.p_number}</td>
-               <td>${print.p_date}</td>
+               <td><fmt:formatDate value="${print.p_date}" type="date" dateStyle="long"/>
+                       </td>
+
                <td>${print.p_descrption}</td>
                <td>${print.e_id}</td>
+
+               <td>
+                   <form method="post" action="deleteRew">
+                       <input type="hidden" value="${print.p_id}" name="pid"/>
+                       <input type="submit" value="删除"/>
+                   </form>
+               </td>
+
+
            </tr>
        </c:forEach>
     </table>

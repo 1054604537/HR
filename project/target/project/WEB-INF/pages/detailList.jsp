@@ -44,29 +44,7 @@
     </style>
     <script type="text/javascript" src="js/jquery-3.1.0.js"></script>
     <script>
-        <%--var deparmentId=$("#department").attr("value");--%>
-        <%--$.ajax({--%>
-            <%--url:"${pageContext.request.contextPath}/student/findClass",--%>
-            <%--type:"get",--%>
-            <%--timeout:"1000",--%>
-            <%--data:{departmentId:deparmentId},--%>
-            <%--success:function (date) {--%>
-                <%--$("classId option").remove();--%>
-                <%--$("classId").append("<option value='0'>请选择</option>");--%>
-                <%--if (date!=0){--%>
-                    <%--for (var i=0;i<date.length;i++){--%>
-                        <%--var classId=deta[i].classId;--%>
-                        <%--var calssName=data[i].className;--%>
-                        <%--$("#classId").append("<option value="+classId+">"+calssName+"</option>")--%>
-                    <%--}--%>
-                <%--}--%>
-            <%--},--%>
-            <%--error:function (XMLResponse) {--%>
-                <%--alert(XMLResponse.responseText);--%>
-            <%--}--%>
 
-
-        <%--});--%>
         $(function () {
            $("#info").focus(function () {
                $("#d4").css("display","block");
