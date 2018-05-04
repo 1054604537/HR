@@ -35,4 +35,29 @@ public class RewAndPubServiceImpl implements RewAndPubService {
     public boolean deleteRew(RewAndPub rewAndPub) {
         return rewAndPubMapper.deleteRew(rewAndPub);
     }
+
+    @Override
+    public List<RewAndPub> empToSalByLate(RewAndPub rewAndPub) {
+        return rewAndPubMapper.empToSalByLate(rewAndPub);
+    }
+
+    @Override
+    public List<RewAndPub> empToSalBylate2(RewAndPub rewAndPub) {
+        return rewAndPubMapper.empToSalBylate2(rewAndPub);
+    }
+
+    @Override
+    public List<RewAndPub> empToSalBylate3(RewAndPub rewAndPub) {
+        return rewAndPubMapper.empToSalBylate3(rewAndPub);
+    }
+
+    @Override
+    public List<RewAndPub> empToSalBylate4(RewAndPub rewAndPub) {
+        return rewAndPubMapper.empToSalBylate4(rewAndPub);
+    }
+
+    @Override
+    public List<RewAndPub> empToSalBylate5(RewAndPub rewAndPub) {
+        return rewAndPubMapper.empToSalBylate5(rewAndPub);
+    }
 }

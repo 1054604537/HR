@@ -13,4 +13,5 @@ public interface InviteService {
     List<Invite> allInvite();//已接受面试的员工及办入职信息
     boolean updateAlllo(Invite invite);//分配状态
     boolean outInviteToUser(Invite invite);//给用户发邀请
+    Invite getInvite(Invite invite);//用户个人情况
 }

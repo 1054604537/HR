@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -214,7 +215,7 @@ public class EmpController {
             simpleDateFormat1.format(date1);
             attence.setA_type("上班正常");
         }
-        else if (a>9&&a<=24){
+        else if (a>9&&a<12){
             System.out.println("打卡+2222");
             SimpleDateFormat simpleDateFormat1=new SimpleDateFormat("yyyy-MM-dd");
             simpleDateFormat1.format(date1);
@@ -228,6 +229,20 @@ public class EmpController {
                 rewAndPub.setE_id(emp.getE_id());
                 rewAndPubService.addRewAndPub(rewAndPub);
                 System.out.println("迟到的罚钱的页面+22222222222");
+        }else if(a>12&&a<24){
+            System.out.println("打卡+3333");
+            SimpleDateFormat simpleDateFormat1=new SimpleDateFormat("yyyy-MM-dd");
+            simpleDateFormat1.format(date1);
+            attence.setA_type("上班不正常");
+//            不正常 迟到的话是要罚钱的  在奖罚的类型中添加一条迟到的数据
+            System.out.println("超过12点来到矿工罚钱的页面 —+1111111");
+            rewAndPub.setP_type("矿工");
+            rewAndPub.setP_descrption("矿工");//矿工是扣除300
+            rewAndPub.setP_date(date1);
+            rewAndPub.setP_number(-300);
+            rewAndPub.setE_id(emp.getE_id());
+            rewAndPubService.addRewAndPub(rewAndPub);
+            System.out.println("迟到的矿工的页面+22222222222");
         }
         attence.setA_clock_in(date);
         attence.setE_eid(emp.getE_eid());
@@ -262,7 +277,7 @@ public class EmpController {
             rewAndPub.setP_type("加班");
             rewAndPub.setP_descrption("加班奖励钱");
             rewAndPub.setP_date(date1);
-            rewAndPub.setP_number(100);
+            rewAndPub.setP_number(200);
             rewAndPub.setE_id(emp.getE_id());
             rewAndPubService.addRewAndPub(rewAndPub);
             System.out.println("加班的奖励的页面+22222222222");
@@ -276,7 +291,7 @@ public class EmpController {
             rewAndPub.setP_type("早退");
             rewAndPub.setP_descrption("早退");
             rewAndPub.setP_date(date1);
-            rewAndPub.setP_number(-300);
+            rewAndPub.setP_number(-200);
             rewAndPub.setE_id(emp.getE_id());
             rewAndPubService.addRewAndPub(rewAndPub);
             System.out.println("早退罚钱的页面+22222222222");
@@ -286,5 +301,43 @@ public class EmpController {
         System.out.println(attence);
         attenceService.endAttence(attence);
         return "empLoginSuccess";
+    }
+
+
+    //查看个人薪资
+    @RequestMapping("/seeSal")
+    public String seeSal(HttpSession session,Model model){
+        System.out.println("来到结薪资");
+        Emp emp= (Emp) session.getAttribute("emp");
+        System.out.println(emp+"11111111");
+
+        Job job=new Job();
+        job.setJ_id(emp.getJ_id());
+
+        Job job1=jobService.empToasal(job);
+        Double sal=job1.getJ_jsal();//个人职位薪资
+        model.addAttribute("jsal",sal);
+        System.out.println(emp.getE_name()+"职位薪资为:"+job1.getJ_jsal());
+        RewAndPub rewAndPub=new RewAndPub();
+        rewAndPub.setE_id(emp.getE_id());
+        List<RewAndPub> list=rewAndPubService.empToSalByLate(rewAndPub);//迟到
+        if (list.size()!=0){
+            model.addAttribute("rewpub",list);
+        }else if(list.size()==0){
+            model.addAttribute("notlate1","没有迟到记录");
+            return "error";
+        }
+        List<RewAndPub> list2=rewAndPubService.empToSalBylate2(rewAndPub);//早退
+        if (list2.size()!=0){
+            model.addAttribute("rewpub2",list2);
+        }else{
+            model.addAttribute("notlate2","没有迟到记录");
+            return "error";
+        }
+
+
+        System.out.println(list+"2222222222");
+
+        return "seeSal";
     }
 }

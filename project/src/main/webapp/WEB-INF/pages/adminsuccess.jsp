@@ -52,7 +52,9 @@
             <li>
                 <a href="allDept">查看所有部门</a>
             </li>
-
+            <li>
+                <a href="seeEmpByDept">查看部门下的人员</a>
+            </li>
             <li>
                 <a href="allotToEmp">管理员对入职未分配工作人员--及入职人员分配操作（部门 职位 薪资 其他）</a>
             </li>

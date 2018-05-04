@@ -17,6 +17,9 @@
     <select id="allInvite" resultType="com.andy.model.Invite">
         select I_ID,I_JOB,I_DATE,I_SITE,I_DESCRPTION i_description,I_UID,I_ISNO_ACCEPT,I_ALLO from T_INVITE WHERE I_ISNO_ACCEPT='接受面试' and I_ALLO='未分配'
     </select>
+    <select id="getInvite" resultType="com.andy.model.Invite">
+        select * from T_INVITE WHERE I_UID=#{i_uid}
+    </select>
 
 
 </mapper>

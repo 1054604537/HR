@@ -15,17 +15,17 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title>分配员工信息</title>
+    <title>录用页面员工信息</title>
 </head>
 <body>
 
 <form action="newAlloEmp" method="post">
-
         <c:forEach items="${sessionScope.users}" var="items">
             <input type="hidden" value="${items.u_id}" name="uid" />
-            姓名：${items.u_name}<input type="submit" value="选择分配"/>
+            姓名：${items.u_name}<input type="submit" value="录用"/>
         </c:forEach>
     ${error}
 </form>
+
 </body>
 </html>

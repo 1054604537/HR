@@ -1,9 +1,12 @@
 package com.andy.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.andy.biz.*;
 import com.andy.dao.DeptMapper;
 import com.andy.dao.InviteMapper;
 import com.andy.model.*;
+
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 10546 on 2018/4/23.
@@ -184,7 +191,7 @@ public class AdminController {
             if (invites.size()!=0){
                 model.addAttribute("invites",invites);
             }else {
-                model.addAttribute("error","没有为分配人员");
+                model.addAttribute("error","没有录用的人员");
             }
         }
         List<User> users=userService.findUserById(uid);
@@ -196,7 +203,7 @@ public class AdminController {
     }
     @RequestMapping("/newAlloEmp")
     public String newAlloEmp(HttpSession session,HttpServletRequest request,Model model){
-        System.out.println("来到分配职位工作");
+        System.out.println("来到录用");
         List<Dept> list=deptService.allDept();//职位
         Integer uid= Integer.parseInt(request.getParameter("uid"));
         int uid1=uid.intValue();
@@ -210,11 +217,12 @@ public class AdminController {
         System.out.println(list1+"11111112312312");
         return "newAllotToEmp";
     }
+
+
     @RequestMapping("/addEmp")
     public String addEmp(HttpServletRequest request) throws Exception{
         System.out.println("来到分配。。。");
         String eid= (request.getParameter("id"));//员工编号
-
         String ename=request.getParameter("name");//员工姓名
         String esex=request.getParameter("sex");//员工性别
         String ephone= (request.getParameter("phone"));//手机号码
@@ -359,12 +367,53 @@ public class AdminController {
         try {
             List<Job>jobList=jobService.allJob();
             List<Dept>list=deptService.deptToJob();
+            List<Emp>empList=empService.allEmpByDdept();
             System.out.println(list);
             session.setAttribute("deptTojob",list);
             model.addAttribute("jobs",jobList);//存在的所有职位
+           // model.addAttribute("empDept",empList);//部门存在的所有员工
             return "queryJob";
         } catch (Exception e) {
             e.printStackTrace();
+        }
+       return "";
+    }
+    @RequestMapping("/seeEmpByDept")
+    public String seeEmpByDept(Model model,HttpSession session){
+        List<Dept>deptList=deptService.allDept();
+
+        //List<Dept> deptList1 =deptService.empToDemp();
+
+       // System.out.println(deptList1);
+        if (deptList.size()==0){
+            model.addAttribute("notDept","没有记录");
+            return "error";
+        }else if(deptList.size()!=0){
+            model.addAttribute("deptlist",deptList);
+            //model.addAttribute("list",list1);
+            return "seeEmpByDept";
+        }
+        return " ";
+    }
+
+    @RequestMapping("/seeEmpAndDept")
+    public String seeEmpAndDept(HttpSession session,HttpServletRequest request,Model model) {
+        System.out.println("1111111+++++++emp");
+        int did= Integer.parseInt(request.getParameter("did"));
+        System.out.println(did);
+        Dept dept=new Dept();
+        dept.setD_id(did);
+        List<Dept>list=deptService.empByDept(dept);
+        System.out.println(list);
+        if (list.size()!=0){
+            for (Dept dept1:list){
+                List<Emp>empList=dept1.getEmps();
+                model.addAttribute("empanddept",empList);
+                return "seeEmpAndDept";
+            }
+        }else if(list.size()==0){
+            model.addAttribute("empanddept1","此职位没有人员");
+            return "error";
         }
        return "";
     }
@@ -426,7 +475,11 @@ public class AdminController {
         String theme=request.getParameter("theme");
         String content=request.getParameter("content");
         String startdate=request.getParameter("startdate");
+
         String enddate=request.getParameter("enddate");
+
+
+
         String site=request.getParameter("site");
         int did= Integer.parseInt(request.getParameter("did"));
 
@@ -519,5 +572,42 @@ public class AdminController {
     @RequestMapping("/all")
     public String seeAll(){
         return "seeAll";
+    }
+    @RequestMapping("/ajaxListAllDept")
+    public void ajaxListAllDept(Model model,HttpServletRequest request,HttpServletResponse response
+    ) throws Exception{
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json;charset=utf-8");
+
+
+        Map<String,Object> jsonObj=new HashMap<>();
+
+        List<Dept> list=deptService.allDept();
+        jsonObj.put("resultList",list);
+
+        JSONObject json=new JSONObject(jsonObj);
+        response.getWriter().print(json);
+        System.out.println(json);
+    }
+
+
+
+
+    @RequestMapping("/ajaxFindJobByDept")
+    public void ajaxFindJobByDept(HttpServletRequest request,HttpServletResponse response,Dept dept) throws Exception {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json;charset=utf-8");
+        System.out.println(dept);
+        if (dept.getD_id()==0){
+            dept.setD_id(1);
+        }
+        Dept dept1=deptService.findDept(dept);
+            Map<String,Object> jsonObj=new HashMap<>();
+            jsonObj.put("result",dept1);
+        System.out.println(dept1);
+        JSONObject json=new JSONObject(jsonObj);
+        response.getWriter().print(json);
     }
 }

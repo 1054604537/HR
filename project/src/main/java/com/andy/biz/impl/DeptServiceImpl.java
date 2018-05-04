@@ -45,4 +45,19 @@ public class DeptServiceImpl implements DeptService {
     public Dept getDeptById(Dept dept) {
         return deptMapper.getDeptById(dept);
     }
+
+    @Override
+    public List<Dept> empToDemp() {
+        return deptMapper.empToDemp();
+    }
+
+    @Override
+    public List<Dept> empByDept(Dept dept) {
+        return deptMapper.empByDept(dept);
+    }
+
+    @Override
+    public Dept findDept(Dept dept) {
+        return deptMapper.findDept(dept);
+    }
 }

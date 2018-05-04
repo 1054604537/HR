@@ -15,4 +15,6 @@ public interface ResumeService {
     List<Resume> allResume2();//全部 用来判段是否存在数据
     Resume getResume(Resume resume);//查
     boolean  updateResume(Resume resume);//修改简历  根据 简历ID
+    Resume getPhone(Resume resume);//查找手机号码时候在存在
+
 }

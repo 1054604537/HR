@@ -1,5 +1,6 @@
 package com.andy.biz;
 
+import com.andy.model.Dept;
 import com.andy.model.Emp;
 
 import java.util.List;
@@ -17,4 +18,7 @@ public interface EmpService {
     boolean updateEmp(Emp emp);//员工离职，隐藏名字
     List<Emp> getInfo(Emp emp);
     boolean updatepass(Emp emp);//修改密码
+    Emp findSal(Emp emp);//查找本职位的工资
+    List<Emp> allEmpByDdept();//全部的部门下对应的员工
+
 }

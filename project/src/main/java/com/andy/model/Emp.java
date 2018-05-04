@@ -2,6 +2,7 @@ package com.andy.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by 10546 on 2018/4/24.

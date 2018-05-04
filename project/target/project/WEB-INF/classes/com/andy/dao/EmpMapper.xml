@@ -28,4 +28,10 @@
     <select id="getInfo" resultType="com.andy.model.Emp">
         select * from T_EMP WHERE E_NAME LIKE '%${e_name}%' ;
     </select>
+    <select id="findSal" resultType="com.andy.model.Emp">
+select * from T_EMP,T_JOB where E_ID=#{e_id} AND T_EMP.J_ID=T_JOB.J_ID
+    </select>
+    <select id="allEmpByDdept" resultType="com.andy.model.Emp">
+        select * from T_EMP,T_DEPT WHERE T_EMP.D_ID=T_DEPT.D_ID
+    </select>
 </mapper>

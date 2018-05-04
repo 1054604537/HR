@@ -22,4 +22,7 @@
     <select id="getJobById" resultType="com.andy.model.Job">
         select * from T_JOB WHERE J_ID=#{j_id}
     </select>
+    <select id="empToasal" resultType="com.andy.model.Job">
+        select J_JSAL from T_JOB where J_ID=#{j_id}
+    </select>
 </mapper>

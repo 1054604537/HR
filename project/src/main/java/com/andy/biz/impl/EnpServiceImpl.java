@@ -2,6 +2,7 @@ package com.andy.biz.impl;
 
 import com.andy.biz.EmpService;
 import com.andy.dao.EmpMapper;
+import com.andy.model.Dept;
 import com.andy.model.Emp;
 import org.springframework.stereotype.Service;
 
@@ -60,5 +61,17 @@ public class EnpServiceImpl implements EmpService {
     @Override
     public boolean updatepass(Emp emp) {
         return empMapper.updatepass(emp);
+    }
+
+    @Override
+    public List<Emp> allEmpByDdept() {
+        return empMapper.allEmpByDdept();
+    }
+
+
+
+    @Override
+    public Emp findSal(Emp emp) {
+        return empMapper.findSal(emp);
     }
 }

@@ -12,7 +12,7 @@ public class Dept implements Serializable {
     private String d_name;
     private Date d_date;
     private List<Job> jobs=new ArrayList<Job>();//部门对应对各职位
-
+    private List<Emp> emps=new ArrayList<>();//部门对应的人员
     public Dept() {
     }
 
@@ -68,6 +68,16 @@ public class Dept implements Serializable {
                 ", d_name='" + d_name + '\'' +
                 ", d_date=" + d_date +
                 ", jobs=" + jobs +
+                ", emps=" + emps +
                 '}';
     }
+
+    public List<Emp> getEmps() {
+        return emps;
+    }
+
+    public void setEmps(List<Emp> emps) {
+        this.emps = emps;
+    }
+
 }

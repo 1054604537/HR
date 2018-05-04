@@ -47,4 +47,9 @@ public class JobServiceImpl implements JobService {
     public Job getJobById(Job job) {
         return jobMapper.getJobById(job);
     }
+
+    @Override
+    public Job empToasal(Job job) {
+        return jobMapper.empToasal(job);
+    }
 }

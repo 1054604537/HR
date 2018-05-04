@@ -15,7 +15,7 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title>分配职位</title>
+    <title>确定录用并入职</title>
 </head>
 <body>
 

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -99,22 +100,31 @@ public class UserController {
        // int uid= Integer.parseInt(request.getParameter("uid"));
         resume.setU_id(user.getU_id());
         System.out.println("添加个人简历");
-
+        String phone=resume.getR_phone();
+        System.out.println(phone+"xxxxxxxxxxxxxxx");
         Resume resume1=new Resume();
         resume1.setU_id(user.getU_id());
-
         Resume resume2=resumeService.getResume(resume1);
-        if (resume2!=null){
-            System.out.println("xxxxxxxxxxxxxxxx");
-            session.setAttribute("resumeIsnull","已存在简历，返回首页前往查看");
+
+        Resume ss=resumeService.getPhone(resume);
+        if (ss!=null){
+            model.addAttribute("notphone","手机号码已经注册");
             return "error";
         }else{
-            System.out.println("ssssssssssbbbbbbbbb");
-            model.addAttribute("resume",resume);//存简历
-            resumeService.addResume(resume);
-            System.out.println(resume);
-            return "success";
+            if (resume2!=null){
+                System.out.println("xxxxxxxxxxxxxxxx");
+                session.setAttribute("resumeIsnull","已存在简历，返回首页前往查看,或手机号码已经被注册");
+                return "error";
+            }else{
+                System.out.println("ssssssssssbbbbbbbbb");
+                model.addAttribute("resume",resume);//存简历
+                resumeService.addResume(resume);//添加简历
+                System.out.println(resume);
+                return "success";
+            }
         }
+
+
     }
     @RequestMapping("/updateResume")
     public String updateResume(HttpServletRequest request,HttpSession session) throws ParseException {
@@ -229,9 +239,9 @@ public class UserController {
 
     @RequestMapping("/message")
     public String messageUser(HttpSession session,Model model){
+        System.out.println("来到我的消息");
        User user= (User) session.getAttribute("user");
-        user.getU_id();
-      //  List<User>list=userService.userToMassage(user);
+
         Invite invite=new Invite();
         invite.setI_uid(user.getU_id());
         List<Invite> list1=inviteService.userMassageByUid(invite);
@@ -242,13 +252,22 @@ public class UserController {
 
     @RequestMapping("/accept")
     public String accept(HttpSession session,HttpServletRequest request){
+        System.out.println("接受面试");
             User user= (User) session.getAttribute("user");
             Invite invite=new Invite();
+
             invite.setI_isno_accept("接受面试");//成为员工。。。
             invite.setI_allo("未分配");
             invite.setI_uid(user.getU_id());
+
+
+
+            Invite invite1=inviteService.getInvite(invite);
+            System.out.println(invite1);
+
             inviteService.isOrNoAccept(invite);//接受
             inviteService.updateAlllo(invite);//状态时未分配。。
+
             return "success";
         }
     @RequestMapping("/userSeeAllRecruit")
@@ -263,7 +282,16 @@ public class UserController {
         }
         return "";
     }
-
-
-
+    @RequestMapping("/check1")
+    public void check(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        String name=request.getParameter("name");
+        PrintWriter pw=response.getWriter();
+        System.out.println("1111111111113zxxxx");
+            if ("111".equals(name)){
+                pw.print(true);
+            }else {
+                pw.print(false);
+            }
+    }
 }

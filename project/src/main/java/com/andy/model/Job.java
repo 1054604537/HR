@@ -87,6 +87,13 @@ public class Job implements Serializable{
 
     @Override
     public String toString() {
-        return "职位："+j_name+"\t"+"--:"+"薪资："+j_jsal;
+        return "Job{" +
+                "j_id=" + j_id +
+                ", j_name='" + j_name + '\'' +
+                ", j_date=" + j_date +
+                ", j_jsal=" + j_jsal +
+                ", d_did=" + d_did +
+                ", emps=" + emps +
+                '}';
     }
 }

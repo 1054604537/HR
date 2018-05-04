@@ -27,4 +27,7 @@
     <select id="getResume" resultType="com.andy.model.Resume">
         select * from T_RESUME WHERE U_ID=#{u_id}
     </select>
+    <select id="getPhone" resultType="com.andy.model.Resume">
+        select R_PHONE from T_RESUME WHERE R_PHONE=#{r_phone}
+    </select>
 </mapper>

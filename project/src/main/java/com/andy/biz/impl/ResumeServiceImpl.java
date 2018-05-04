@@ -51,6 +51,11 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     @Override
+    public Resume getPhone(Resume resume) {
+        return resumeMapper.getPhone(resume);
+    }
+
+    @Override
     public boolean updateResume(Resume resume) {
         return resumeMapper.updateResume(resume);
     }
