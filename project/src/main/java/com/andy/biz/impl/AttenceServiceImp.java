@@ -22,13 +22,23 @@ public class AttenceServiceImp implements AttenceService {
     }
 
     @Override
-    public boolean endAttence(Attence attence) {
-        attenceMapper.endAttence(attence);
+    public boolean addEndAttence(Attence attence) {
+        attenceMapper.addEndAttence(attence);
         return true;
     }
 
     @Override
     public List<Attence> allAttence(Attence attence) {
         return attenceMapper.allAttence(attence);
+    }
+
+    @Override
+    public Attence getDate(Attence attence) {
+        return attenceMapper.getDate(attence);
+    }
+
+    @Override
+    public Attence getDate2(Attence attence) {
+        return attenceMapper.getDate2(attence);
     }
 }

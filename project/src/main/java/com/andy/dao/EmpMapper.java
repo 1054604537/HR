@@ -20,4 +20,7 @@ public interface EmpMapper {
     boolean updatepass(Emp emp);//修改密码
     Emp findSal(Emp emp);//查找本职位的工资
     List<Emp> allEmpByDdept();//全部的部门下对应的员工
+
+    boolean updateRelieve(Emp emp);//员工换岗
+
 }

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 10546
@@ -16,6 +17,15 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        body {
+            width: 100%;
+            height:100%;
+            font-family: 'Open Sans', sans-serif;
+            background: url("images/age.jpg");
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+        }
+    </style>
 </head>
 <body>
 
@@ -49,7 +59,8 @@
         <tr>
             <td>${print2.j_id}</td>
             <td>${print2.j_name}</td>
-            <td>${print2.j_date}</td>
+            <td>
+                <fmt:formatDate value="${print2.j_date}" pattern="yyyy-MM-dd"/></td>
             <td>${print2.j_jsal}</td>
             <td>
                 <form action="deleteJob" method="post">

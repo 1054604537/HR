@@ -4,10 +4,18 @@
     <insert id="saveClockAttence">
         insert into T_ATTENCE (A_ID, A_CLOCK_IN,A_TYPE, E_EID) values (ATTENCE_SEQ.nextval,#{a_clock_in},#{a_type},#{e_eid})
     </insert>
-    <insert id="endAttence">
-        insert into T_ATTENCE (A_ID,A_END_IN, A_TYPE, E_EID) values (ATTENCE_SEQ.nextval,#{a_end_in},#{a_type},#{e_eid})
+    <insert id="addEndAttence">
+      insert into T_ATTENCE (A_ID, A_END_IN,A_TYPE, E_EID) values (ATTENCE_SEQ.nextval,#{a_end_in},#{a_type},#{e_eid})
     </insert>
+
     <select id="allAttence" resultType="com.andy.model.Attence">
         select * from T_ATTENCE WHERE E_EID=#{e_eid}
+    </select>
+    <select id="getDate" resultType="com.andy.model.Attence">
+        select * from T_ATTENCE WHERE E_EID=#{e_eid} and trunc(a_clock_in)=trunc(sysdate)
+    </select>
+
+    <select id="getDate2" resultType="com.andy.model.Attence">
+          select * from T_ATTENCE WHERE E_EID=#{e_eid} and trunc(a_end_in)=trunc(sysdate)
     </select>
 </mapper>

@@ -15,6 +15,15 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        body {
+            width: 100%;
+            height:100%;
+            font-family: 'Open Sans', sans-serif;
+            background: url("images/age.jpg");
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+        }
+    </style>
 </head>
 <body>
     <p>请填写表单信息</p>
@@ -27,7 +36,8 @@
         金额：<input type="number" name="number"  required="required"/><br/>
         创建时间：<input type="date" name="date"  required="required"/><br/>
         奖罚原因：<input type="text" name="descption"  required="required"/><br/>
-        操作员工编号：<input type="number" name="eid"  required="required"/><br/>
+        操作员工编号：
+        <input type="number" name="eid"  required="required"/><br/>
         <input type="submit" value="提交"/>
     </form>
 </body>

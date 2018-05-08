@@ -16,7 +16,15 @@
     <base href="<%=basePath%>"/>
     <title>增加部门</title>
     <script src="js/jquery-3.1.0.js"></script>
-
+    <style>
+        body {
+            width: 100%;
+            height:100%;
+            font-family: 'Open Sans', sans-serif;
+            background: url("images/age.jpg");
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+        }
+    </style>
 </head>
 <body>
 ${error}

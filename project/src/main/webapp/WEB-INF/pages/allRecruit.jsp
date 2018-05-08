@@ -16,6 +16,15 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>全部招聘信息</title>
+    <style>
+        body {
+            width: 100%;
+            height:100%;
+            font-family: 'Open Sans', sans-serif;
+            background: url("images/age.jpg");
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+        }
+    </style>
 </head>
 <body>
 

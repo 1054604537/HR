@@ -8,7 +8,7 @@ import java.io.Serializable;
 //薪资表实体类
 public class Sal implements Serializable {
     private int s_id;
-    private int s_basic_sal;//2200 +job+ (迟到)+(早退)+（加班）+（矿工）+（公司奖励）+（公司其他惩罚）
+    //private int s_basic_sal;//2200 +job+ (迟到)+(早退)+（加班）+（矿工）+（公司奖励）+（公司其他惩罚）
     private Job job;//职位的工资  员工所在的职位工资
     private Attence attence;//考勤的存在计算员工工资
     private RewAndPub rewAndPub;//奖惩的 费用计算
@@ -18,9 +18,9 @@ public class Sal implements Serializable {
     public Sal() {
     }
 
-    public Sal(int s_id, int s_basic_sal, Job job, Attence attence, RewAndPub rewAndPub, int s_scocial, Emp emp) {
+    public Sal(int s_id, Job job, Attence attence, RewAndPub rewAndPub, int s_scocial, Emp emp) {
         this.s_id = s_id;
-        this.s_basic_sal = s_basic_sal;
+
         this.job = job;
         this.attence = attence;
         this.rewAndPub = rewAndPub;
@@ -36,13 +36,7 @@ public class Sal implements Serializable {
         this.s_id = s_id;
     }
 
-    public int getS_basic_sal() {
-        return s_basic_sal;
-    }
-
-    public void setS_basic_sal(int s_basic_sal) {
-        this.s_basic_sal = s_basic_sal;
-    }
+//
 
     public Job getJob() {
         return job;
@@ -82,5 +76,17 @@ public class Sal implements Serializable {
 
     public void setEmp(Emp emp) {
         this.emp = emp;
+    }
+
+    @Override
+    public String toString() {
+        return "Sal{" +
+                "s_id=" + s_id +
+                ", job=" + job +
+                ", attence=" + attence +
+                ", rewAndPub=" + rewAndPub +
+                ", s_scocial=" + s_scocial +
+                ", emp=" + emp +
+                '}';
     }
 }

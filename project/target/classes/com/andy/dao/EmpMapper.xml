@@ -10,6 +10,9 @@
     <update id="updatepass">
         update T_EMP set E_PASS =#{e_pass}  where e_eid=#{e_eid}
     </update>
+    <update id="updateRelieve">
+        update T_EMP set D_ID =#{d_id},j_id=#{j_id} where e_eid=#{e_eid}
+    </update>
     <select id="getEmp" resultType="com.andy.model.Emp">
         select E_EID,E_ID,E_NAME,E_PHONE,E_EMAIL,E_SEX,D_ID,E_JOINDATE from T_EMP where D_ID=#{d_id}
     </select>

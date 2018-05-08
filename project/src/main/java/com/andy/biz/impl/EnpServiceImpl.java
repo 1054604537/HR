@@ -68,6 +68,10 @@ public class EnpServiceImpl implements EmpService {
         return empMapper.allEmpByDdept();
     }
 
+    @Override
+    public boolean updateRelieve(Emp emp) {
+        return empMapper.updateRelieve(emp);
+    }
 
 
     @Override

@@ -26,7 +26,7 @@
     </select>
 
     <select id="empByDept" resultMap="empToDept">
-         select tm.E_NAME,tm.D_ID tmd from T_DEPT td,T_EMP tm where td.D_ID=#{d_id} and td.D_ID=tm.D_ID
+         select tm.E_PHONE,tm.E_NAME,tm.D_ID tmd from T_DEPT td,T_EMP tm where td.D_ID=#{d_id} and td.D_ID=tm.D_ID
     </select>
     <select id="findDept" resultMap="jobByDept">
     select D_ID,D_NAME,D_DATE,J_ID,J_NAME,J_DATE,J_JSAL,D_DID from T_DEPT td,T_JOB tj where D_ID=D_DID and D_ID=#{d_id}
@@ -48,6 +48,7 @@
         <collection property="emps" ofType="Emp">
             <id property="d_id" column="tmd"></id>
             <result property="e_name" column="E_NAME"></result>
+            <result property="e_phone" column="E_PHONE"></result>
         </collection>
     </resultMap>
 

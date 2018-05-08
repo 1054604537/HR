@@ -15,16 +15,14 @@
 <head>
     <base href="<%=basePath%>"/>
     <script src="js/jquery-3.1.0.js"></script>
-    <title>三级联动</title>
+    <title>二级联动</title>
 
 </head>
 <body>
 <div>
-    <select id="riDept" >
-
+    <select id="riDept" onchange="change()" >
     </select>
     <select id="id2">
-
     </select>
 </div>
 
@@ -49,30 +47,28 @@
             }
         });
     }
-    $(document).ready(function () {
-        $("#riDept").bind( "Change",function (n) {
-            alert("11111111");
-            $.ajax({
-                type:'post',
-                dataType:'json',
-                data:{"d_id":n},
-                async:false,
-                url:'ajaxFindJobByDept',
-                success:function (data) {
-                    var job=data.result.jobs;
-                    console.log(job);
-                    $("#id2").bind({
-                        data:job,
-                        valueField:'j_id',
-                        textField:'j_name'
-                    })
-                }
-            })
-
-        })
-
-    })
-
+   function change() {
+       var deptId=$("#riDept").val();//获取以以及菜单的id
+      // var tbody=window.document.getElementById("id2");//job选项框
+       $("#id2").empty();
+       $.ajax({
+           type:'post',
+           dataType:'json',
+           url:'ajaxFindJobByDept',
+           data:{
+               d_id:deptId
+           },
+           success:function (data) {
+               var job=data.resultJob;
+               console.log(job);
+               for(var i=0;i<job.length;i++){
+                  $("#id2").append(
+                      $("<option value='"+job[i].j_id+"'>"+job[i].j_name+"</option>")
+                  )
+               }
+           }
+       })
+   }
 
 
 </script>

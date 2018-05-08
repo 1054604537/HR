@@ -14,8 +14,12 @@ public interface RewAndPubMapper {
     boolean deleteRew(RewAndPub rewAndPub);//删除记录
 
     List<RewAndPub> empToSalByLate(RewAndPub rewAndPub);//员工迟到记录
+
     List<RewAndPub> empToSalBylate2(RewAndPub rewAndPub);//员工早退记录
-    List<RewAndPub> empToSalBylate3(RewAndPub rewAndPub);//员工矿工记录
+
+    List<RewAndPub> empToSalBylate3(RewAndPub rewAndPub);//员工旷工记录
+
     List<RewAndPub> empToSalBylate4(RewAndPub rewAndPub);//员工奖励记录
+
     List<RewAndPub> empToSalBylate5(RewAndPub rewAndPub);//员工惩罚记录
 }

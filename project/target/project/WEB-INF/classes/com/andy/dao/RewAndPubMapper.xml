@@ -13,19 +13,25 @@
     <select id="empToRewAndPub" resultType="com.andy.model.RewAndPub">
         select * from T_REWANDPUB WHERE E_ID=#{e_id}
     </select>
+
     <select id="empToSalByLate" resultType="com.andy.model.RewAndPub">
-        select P_ID,P_NUMBER,P_DATE from T_REWANDPUB where E_ID=#{e_id} and p_type='迟到'
+      SELECT  P_NUMBER,P_DATE from T_REWANDPUB where E_ID=#{e_id} and p_type='迟到'
     </select>
+
     <select id="empToSalBylate2" resultType="com.andy.model.RewAndPub">
-         select P_ID,P_NUMBER,P_DATE from T_REWANDPUB where E_ID=#{e_id} and p_type='早退'
+        SELECT  P_NUMBER,P_DATE  from T_REWANDPUB where E_ID=#{e_id} and p_type='早退'
     </select>
+
     <select id="empToSalBylate3" resultType="com.andy.model.RewAndPub">
-        select P_ID,P_NUMBER,P_DATE from T_REWANDPUB where E_ID=#{e_id} and p_type='矿工'
+        SELECT  P_NUMBER,P_DATE from T_REWANDPUB where E_ID=#{e_id} and p_type='旷工'
     </select>
+
     <select id="empToSalBylate4" resultType="com.andy.model.RewAndPub">
-        select P_ID,P_NUMBER,P_DATE from T_REWANDPUB where E_ID=#{e_id} and p_type='奖励'
+        SELECT  P_NUMBER,P_DATE,P_TYPE from T_REWANDPUB where E_ID=#{e_id} and p_type='奖励'
     </select>
+
     <select id="empToSalBylate5" resultType="com.andy.model.RewAndPub">
-        select P_ID,P_NUMBER,P_DATE from T_REWANDPUB where E_ID=#{e_id} and p_type='惩罚'
+      SELECT  P_NUMBER,P_DATE,P_TYPE  from T_REWANDPUB where E_ID=#{e_id} and p_type='惩罚'
     </select>
+
 </mapper>

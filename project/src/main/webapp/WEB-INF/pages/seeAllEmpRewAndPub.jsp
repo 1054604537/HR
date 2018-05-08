@@ -18,6 +18,15 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        body {
+            width: 100%;
+            height:100%;
+            font-family: 'Open Sans', sans-serif;
+            background: url("images/age.jpg");
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+        }
+    </style>
 </head>
 <body>
     <table border="1px" cellpadding="0" cellspacing="0">

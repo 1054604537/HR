@@ -33,7 +33,8 @@
             <td>${print.p_type}</td>
             <td>${print.p_number}</td>
             <td>
-               ${print.p_date}
+
+                <fmt:formatDate value="${print.p_date}" pattern="yyyy-MM-dd"/>
                    </td>
             <td>${print.p_descrption}</td>
             <td>${print.e_id}</td>

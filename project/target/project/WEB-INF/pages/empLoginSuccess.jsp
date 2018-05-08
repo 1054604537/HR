@@ -36,22 +36,25 @@
                 <a href="seeEmp">查看个人基本信息</a>
             </li>
             <li>
-                <a href="seeSal">查看个人薪资</a>
+                <a href="seeSal">查看工资条</a>
             </li>
             <li>
                 <a href="seeTrain">查看个人培训信息</a>
             </li>
+            <%--<li>--%>
+                <%--<a href="seePerformance">查看绩效（奖惩）</a>--%>
+            <%--</li>--%>
             <li>
-                <a href="seePerformance">查看绩效（奖惩）</a>
-            </li>
-            <li>
-                <a href="seeDeptAndJob">查看部门职位</a>
+                <a href="seeDeptAndJob">查看个人部门职位</a>
             </li>
             <li>
                 <a href="seeAttence">查看你个人考勤</a>
             </li>
             <li>
                 <a href="detailList">查看公司通讯录</a>
+            </li>
+            <li>
+                <a href="allSal">查看上月工资单</a>
             </li>
             <li>
                 <a href="dimission" onclick="return confirm('确定离职？')">提出离职(点击后不可修改，慎用！！！)</a>

@@ -18,6 +18,13 @@
     <base href="<%=basePath%>"/>
     <title>查看投递简历</title>
     <style>
+        body {
+            width: 100%;
+            height:100%;
+            font-family: 'Open Sans', sans-serif;
+            background: url("images/age.jpg");
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+        }
         .box{
             width:50%; margin-top:10%; margin:auto; padding:28px;
             height:400px; border:1px #111 solid;

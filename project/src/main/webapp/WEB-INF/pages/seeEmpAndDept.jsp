@@ -20,13 +20,13 @@
 <body>
     <table border="1px" cellpadding="0" cellspacing="0">
         <tr>
-            <th>
-                人员
-            </th>
+            <th>人员</th>
+            <th>手机号码</th>
         </tr>
             <c:forEach items="${empanddept}" var="print">
                <tr>
                    <td>${print.e_name}</td>
+                   <td>${print.e_phone}</td>
                </tr>
 
             </c:forEach>

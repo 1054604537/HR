@@ -16,6 +16,15 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>添加招聘信息</title>
+    <style>
+        body {
+            width: 100%;
+            height:100%;
+            font-family: 'Open Sans', sans-serif;
+            background: url("images/age.jpg");
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+        }
+    </style>
 </head>
 <body>
     <form action="addRecruit" method="post">
@@ -25,8 +34,6 @@
             ${print.j_name}:<input type="radio" value="${print.j_name}" name="job" placeholder="招聘职位"/><br/>
         </c:forEach>
         <%--招聘职位：<input type="text" name="job" placeholder="招聘职位" autofocus/><br/>--%>
-
-
 
 
         招聘人数:<input type="number" name="number" placeholder="人数"  required="required"/><br/>

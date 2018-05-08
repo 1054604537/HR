@@ -16,14 +16,36 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>添加培训消息</title>
+    <style>
+        body {
+            width: 100%;
+            height:100%;
+            font-family: 'Open Sans', sans-serif;
+            background: url("images/age.jpg");
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+        }
+    </style>
+    <script src="js/jquery-3.1.0.js"></script>
+    <script>
+        $(function () {
+            function checkOf() {
+                var box1=$("#box1").val();
+                var box2=$("box2").val();
+                if (box1>box2){
+                    alert("开始时间不能大于结束时间");
+                    return '' ;
+                }
+            }
+        })
+    </script>
 </head>
 <body>
 <fieldset>
     <form action="addTrain" method="post">
         培训主题： <input type="text" name="theme" required="required"/><br/><br/>
         培训内容： <textarea name="content" required="required"></textarea><br/>
-        培训开始时间：<input type="date" name="startdate" required="required"><br/>
-        培训结束时间：<input type="date" name="enddate" required="required"/><br/>
+        培训开始时间：<input type="date" name="startdate" required="required" id="box1"><br/>
+        培训结束时间：<input type="date" name="enddate" required="required" id="box2" onblur="checkOf()"/><br/>
         培训地点：<input type="text" name="site" required="required"/><br/>
         选择培训部门：
         <c:forEach items="${dept}" var="items">
