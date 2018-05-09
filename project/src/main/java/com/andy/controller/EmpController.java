@@ -2,6 +2,7 @@ package com.andy.controller;
 
 import com.andy.biz.*;
 import com.andy.model.*;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -161,8 +163,6 @@ public class EmpController {
         }
         return "";
     }
-
-
 
 
     @RequestMapping("/dimission")
@@ -328,7 +328,7 @@ public class EmpController {
     }
     //查看个人薪资
     @RequestMapping("/seeSal")
-    public String seeSal(HttpSession session,Model model){
+    public String seeSal(HttpSession session,Model model,HttpServletResponse response) throws IOException {
         System.out.println("来到结薪资工资条");
         Emp emp= (Emp) session.getAttribute("emp");
 
@@ -343,24 +343,19 @@ public class EmpController {
         System.out.println(emp.getE_name()+"职位薪资为:"+job1.getJ_jsal());
         RewAndPub rewAndPub=new RewAndPub();
         rewAndPub.setE_id(emp.getE_id());
-
         List<RewAndPub> list1=rewAndPubService.empToSalByLate(rewAndPub);//2 迟到
         List<RewAndPub> list2=rewAndPubService.empToSalBylate2(rewAndPub);//3 早退
         List<RewAndPub>list3=rewAndPubService.empToSalBylate3(rewAndPub);//4 矿工
         List<RewAndPub>list4=rewAndPubService.empToSalBylate4(rewAndPub);//5 管理员的奖励
         List<RewAndPub>list5=rewAndPubService.empToSalBylate5(rewAndPub);//6 管理员的惩罚
-//        if (list1.size()!=0&&list2.size()!=0&&list3.size()!=0&&list3.size()!=0&&list4.size()!=0&&list5.size()!=0){
+
             model.addAttribute("late1",list1);
             model.addAttribute("late2",list2);
             model.addAttribute("late3",list3);
             model.addAttribute("late4",list4);
             model.addAttribute("late5",list5);
             return "seeSal";
-//        }else if (list1.size()==0){//没有迟到记录
-//            model.addAttribute("notLate","没有迟到记录");
-//            return "";
-//        }
-//        return "";
+
     }
     @RequestMapping("/allSal")
     public String allSal(HttpSession session){
@@ -373,14 +368,26 @@ public class EmpController {
 
         System.out.println(job1.getJ_jsal());
 
-        //2.找出奖励的部分
-
-        //3.找出惩罚的部分
-        //4.找出早退的部分
-        //5.找出旷工的部分
-        //6.找出迟到的部分
-
-
         return "allSal";
     }
+
+    @RequestMapping("/reconsider")
+    public String reconsider(@Param("name")String name,@Param("number")int number,HttpSession session,HttpServletResponse response){
+        response.setContentType("text/html;charset=utf-8");
+        Emp emp= (Emp) session.getAttribute("emp");
+
+        System.out.println("薪资复议");
+        RewAndPub rewAndPub=new RewAndPub();//奖惩生成
+        rewAndPub.setE_id(emp.getE_id());//工号
+        rewAndPub.setP_number(number);
+        rewAndPub.setP_date(new Date());
+        rewAndPub.setP_descrption(name);
+        rewAndPub.setP_type("工资复议");
+
+        System.out.println(rewAndPub);
+        rewAndPubService.addRewAndPub(rewAndPub);
+
+        return "empLoginSuccess";
+    }
+
 }

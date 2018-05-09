@@ -26,9 +26,22 @@
             background: url("images/age.jpg");
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
         }
+        .main{
+            text-align: center; /*让div内部文字居中*/
+            border-radius: 20px;
+            width: 300px;
+            height: 350px;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
     </style>
 </head>
 <body>
+<div class="main">
     <table border="1px" cellpadding="0" cellspacing="0">
         <tr>
             <th>类型</th>
@@ -39,26 +52,28 @@
             <th>删除此记录</th>
         </tr>
 
-       <c:forEach items="${seeAllEmpRewAndPub}" var="print">
-           <tr>
-               <td>${print.p_type}</td>
-               <td>${print.p_number}</td>
-               <td><fmt:formatDate value="${print.p_date}" type="date" dateStyle="long"/>
-                       </td>
+        <c:forEach items="${seeAllEmpRewAndPub}" var="print">
+            <tr>
+                <td>${print.p_type}</td>
+                <td>${print.p_number}</td>
+                <td><fmt:formatDate value="${print.p_date}" type="date" dateStyle="long"/>
+                </td>
 
-               <td>${print.p_descrption}</td>
-               <td>${print.e_id}</td>
+                <td>${print.p_descrption}</td>
+                <td>${print.e_id}</td>
 
-               <td>
-                   <form method="post" action="deleteRew">
-                       <input type="hidden" value="${print.p_id}" name="pid"/>
-                       <input type="submit" value="删除"/>
-                   </form>
-               </td>
+                <td>
+                    <form method="post" action="deleteRew">
+                        <input type="hidden" value="${print.p_id}" name="pid"/>
+                        <input type="submit" value="删除"/>
+                    </form>
+                </td>
 
 
-           </tr>
-       </c:forEach>
+            </tr>
+        </c:forEach>
     </table>
+</div>
+
 </body>
 </html>

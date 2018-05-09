@@ -22,4 +22,12 @@ public interface RewAndPubMapper {
     List<RewAndPub> empToSalBylate4(RewAndPub rewAndPub);//员工奖励记录
 
     List<RewAndPub> empToSalBylate5(RewAndPub rewAndPub);//员工惩罚记录
+
+
+
+    List<RewAndPub>  findEmpSal();//全部员工的复议
+
+    boolean updateReconsider(RewAndPub rewAndPub);//根据id做更改 把原因改成加同意
+
+    String findCount(String eid);//总记录
 }

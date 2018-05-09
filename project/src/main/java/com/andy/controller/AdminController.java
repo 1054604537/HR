@@ -7,6 +7,7 @@ import com.andy.dao.InviteMapper;
 import com.andy.model.*;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.apache.ibatis.annotations.Param;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -659,7 +660,39 @@ public class AdminController {
             empService.updateRelieve(emp);
             System.out.println("换岗成功");
             return "adminsuccess";
+    }
+    @RequestMapping("/seeEmpSal")
+    public String seeEmpSal(Model model){
+        List<RewAndPub> list=rewAndPubService.findEmpSal();//全部员工的复议信息
+        //管理员同意复议
+        if (list.size()==0){
+            String massage="没有员工复议信息";
+            model.addAttribute("notSeconsider",massage);
+            return "error";
+        }else {
+            model.addAttribute("seconsider",list);
+            return "seeEmpSal";
+        }
+    }
 
+    @RequestMapping("/updateSal")
+    public String updateSal(@Param("eid")String eid,@Param("id")int id,@Param("descrption")String descrption,HttpServletRequest request,Model model){
+        //管理员同意
 
+        String empId=rewAndPubService.findCount(eid);
+        int parseInt=Integer.parseInt(empId);
+        if (parseInt<22&&parseInt>0){
+                String massage="该员工入职不满22天不能操作";
+                model.addAttribute("noTo",massage);
+                return "error";
+        }else {
+            String select=request.getParameter("select");
+            RewAndPub rewAndPub=new RewAndPub();
+            rewAndPub.setP_id(id);
+            rewAndPub.setP_descrption(descrption+select);
+            rewAndPubService.updateReconsider(rewAndPub);
+            System.out.println("ok了");
+            return "adminsuccess";
+        }
     }
 }

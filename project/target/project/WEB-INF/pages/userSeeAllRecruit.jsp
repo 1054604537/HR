@@ -23,7 +23,7 @@
     }
     .main{
          text-align: center; /*让div内部文字居中*/
-         background-color: #fff;
+         /*background-color: #fff;*/
          border-radius: 20px;
          width: 300px;
          height: 350px;
@@ -69,7 +69,9 @@
                 </tr>
             </c:forEach>
         </table>
+        <a href="index">返回</a>
     </div>
+
 ${sessionScope.error}
 </body>
 </html>

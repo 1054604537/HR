@@ -6,6 +6,7 @@ import java.util.Date;
 /**
  * Created by 10546 on 2018/4/27.
  */
+//奖惩的实体类
 public class RewAndPub implements Serializable {
     private int p_id;
     private String p_type;//类型

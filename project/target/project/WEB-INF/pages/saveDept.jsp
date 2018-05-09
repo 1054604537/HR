@@ -24,11 +24,25 @@
             background: url("images/age.jpg");
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
         }
+        .main{
+            text-align: center; /*让div内部文字居中*/
+            border-radius: 20px;
+            width: 300px;
+            height: 350px;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
     </style>
 </head>
 <body>
-${error}
-<p><span>*</span>现有部门不能重复添加</p>
+
+<div class="main">
+    ${error}
+        <p><span>*</span>现有部门不能重复添加</p>
 
     <form method="post" action="addDept" onsubmit="check(this);return false">
         <div class="name">
@@ -37,6 +51,8 @@ ${error}
         </div>
         <input type="submit" value="添加"/>
     </form>
+
+</div>
 
 <script>
     function check(form) {

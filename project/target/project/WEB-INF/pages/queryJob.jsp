@@ -25,53 +25,67 @@
             background: url("images/age.jpg");
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
         }
+        .main{
+            text-align: center; /*让div内部文字居中*/
+            border-radius: 20px;
+            width: 300px;
+            height: 350px;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
     </style>
 </head>
 <body>
-
-
-<table border="1" cellspacing="0" cellpadding="0">
-    <tr>
-        <th>部门编号</th>
-        <th>部门名称</th>
-        <th>职位</th>
-    </tr>
-    <c:forEach var="print" items="${sessionScope.deptTojob}">
+<div class="main">
+    <table border="1" cellspacing="0" cellpadding="0">
         <tr>
-            <td>${print.d_id}</td>
-            <td>${print.d_name}</td>
-            <td>${print.jobs}</td>
+            <th>部门编号</th>
+            <th>部门名称</th>
+            <th>职位</th>
         </tr>
-    </c:forEach>
-</table>
+        <c:forEach var="print" items="${sessionScope.deptTojob}">
+            <tr>
+                <td>${print.d_id}</td>
+                <td>${print.d_name}</td>
+                <td>${print.jobs}</td>
+            </tr>
+        </c:forEach>
+    </table>
 
-<p>*:职位下有任职员工不能删除</p>
-<table border="1px" cellpadding="0" cellspacing="0">
+    <p>*:职位下有任职员工不能删除</p>
+    <table border="1px" cellpadding="0" cellspacing="0">
 
-    <tr>
-        <th>职位ID</th>
-        <th>职位名称</th>
-        <th>职位创建时间</th>
-        <th>职位薪资</th>
-        <th>删除职位</th>
-    </tr>
-    <c:forEach items="${jobs}" var="print2">
         <tr>
-            <td>${print2.j_id}</td>
-            <td>${print2.j_name}</td>
-            <td>
-                <fmt:formatDate value="${print2.j_date}" pattern="yyyy-MM-dd"/></td>
-            <td>${print2.j_jsal}</td>
-            <td>
-                <form action="deleteJob" method="post">
-                    <input type="hidden" value="${print2.j_id}" name="jid"/>
-                    <input type="submit" value="删除"/>
-                </form>
-
-            </td>
+            <th>职位ID</th>
+            <th>职位名称</th>
+            <th>职位创建时间</th>
+            <th>职位薪资</th>
+            <th>删除职位</th>
         </tr>
-    </c:forEach>
-</table>
+        <c:forEach items="${jobs}" var="print2">
+            <tr>
+                <td>${print2.j_id}</td>
+                <td>${print2.j_name}</td>
+                <td>
+                    <fmt:formatDate value="${print2.j_date}" pattern="yyyy-MM-dd"/></td>
+                <td>${print2.j_jsal}</td>
+                <td>
+                    <form action="deleteJob" method="post">
+                        <input type="hidden" value="${print2.j_id}" name="jid"/>
+                        <input type="submit" value="删除"/>
+                    </form>
+
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
+
+
 
 </body>
 </html>

@@ -57,6 +57,21 @@ public class RewAndPubServiceImpl implements RewAndPubService {
     }
 
     @Override
+    public List<RewAndPub> findEmpSal() {
+        return rewAndPubMapper.findEmpSal();
+    }
+
+    @Override
+    public boolean updateReconsider(RewAndPub rewAndPub) {
+        return rewAndPubMapper.updateReconsider(rewAndPub);
+    }
+
+    @Override
+    public String findCount(String eid) {
+        return rewAndPubMapper.findCount(eid);
+    }
+
+    @Override
     public List<RewAndPub> empToSalBylate5(RewAndPub rewAndPub) {
         return rewAndPubMapper.empToSalBylate5(rewAndPub);
     }

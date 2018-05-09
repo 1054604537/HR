@@ -37,7 +37,7 @@
 
 <div style="width: 1500px;height: auto">
 
-    <div class="left_box" style="float: left;width: 750px;background:darkgrey">
+    <div class="left_box" style="float: left;width: 750px;">
         <h3>招聘信息的操作</h3>
         <ul>
             <li>
@@ -52,7 +52,7 @@
 
         </ul>
     </div>
-    <div style="float: inherit;width: 750px;background: rosybrown">
+    <div style="float: inherit;width: 750px;">
         <h3>部门的操作</h3>
         <ul>
             <li>
@@ -73,7 +73,7 @@
         </ul>
     </div>
 
-<div style="float: inherit;width: 750px;background:darkred">
+<div style="float: inherit;width: 750px;">
     <h3>职位的操作</h3>
     <ul>
         <li>
@@ -85,7 +85,7 @@
     </ul>
 </div>
 
-<div style="float: inherit;width: 750px;background:royalblue">
+<div style="float: inherit;width: 750px;">
     <h3>培训中心</h3>
     <ul>
         <li>
@@ -97,7 +97,7 @@
     </ul>
 </div>
 
-    <div style="float: inherit;width: 750px;background:chartreuse">
+    <div style="float: inherit;width: 750px;">
         <h3>奖惩中心</h3>
         <ul>
             <li>
@@ -105,6 +105,9 @@
             </li>
             <li>
                 <a href="seeAllEmpRewAndPub">查看所有员工的奖惩记录（删除记录）</a>
+            </li>
+            <li>
+                <a href="seeEmpSal">查看员工工资疑问</a>
             </li>
         </ul>
     </div>

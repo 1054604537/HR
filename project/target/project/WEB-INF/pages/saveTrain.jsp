@@ -24,28 +24,40 @@
             background: url("images/age.jpg");
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
         }
+        .main{
+            text-align: center; /*让div内部文字居中*/
+            border-radius: 20px;
+            width: 300px;
+            height: 350px;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
     </style>
     <script src="js/jquery-3.1.0.js"></script>
     <script>
-        $(function () {
-            function checkOf() {
-                var box1=$("#box1").val();
-                var box2=$("box2").val();
-                if (box1>box2){
-                    alert("开始时间不能大于结束时间");
-                    return '' ;
-                }
+        function checkdate() {
+            var date1=document.getElementById("box1").value.replace();
+            var date2=document.getElementById("box2").value.replace();
+            if (date1>date2){
+                alert("结束时间不能小于开始时间");
+                return false;
+            }else{
+                return true;
             }
-        })
+        }
     </script>
 </head>
 <body>
-<fieldset>
+<div class="main">
     <form action="addTrain" method="post">
         培训主题： <input type="text" name="theme" required="required"/><br/><br/>
         培训内容： <textarea name="content" required="required"></textarea><br/>
         培训开始时间：<input type="date" name="startdate" required="required" id="box1"><br/>
-        培训结束时间：<input type="date" name="enddate" required="required" id="box2" onblur="checkOf()"/><br/>
+        培训结束时间：<input type="date" name="enddate" required="required" id="box2" onblur="checkdate()"/><br/>
         培训地点：<input type="text" name="site" required="required"/><br/>
         选择培训部门：
         <c:forEach items="${dept}" var="items">
@@ -54,7 +66,9 @@
         <input type="submit" value="发布"/>
         <input type="submit" value="取消"/>
     </form>
-</fieldset>
+</div>
+
+
 
 </body>
 </html>

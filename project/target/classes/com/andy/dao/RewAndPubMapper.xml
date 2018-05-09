@@ -4,6 +4,9 @@
     <insert id="addRewAndPub">
         insert into T_REWANDPUB (P_ID, P_TYPE, P_NUMBER, P_DATE, E_ID, P_DESCRPTION) values (REWANDPUB_SEQ.nextval,#{p_type},#{p_number},#{p_date},#{e_id},#{p_descrption})
     </insert>
+    <update id="updateReconsider">
+        update T_REWANDPUB set P_DESCRPTION =#{p_descrption}  where p_id=#{p_id}
+    </update>
     <delete id="deleteRew">
         DELETE FROM T_REWANDPUB WHERE P_ID=#{p_id}
     </delete>
@@ -32,6 +35,13 @@
 
     <select id="empToSalBylate5" resultType="com.andy.model.RewAndPub">
       SELECT  P_NUMBER,P_DATE,P_TYPE  from T_REWANDPUB where E_ID=#{e_id} and p_type='惩罚'
+    </select>
+    <select id="findEmpSal" resultType="com.andy.model.RewAndPub">
+        select * from T_REWANDPUB where P_TYPE='工资复议'
+    </select>
+    <select id="findCount" resultType="java.lang.String">
+        SELECT count(E_ID)
+        FROM T_REWANDPUB WHERE E_ID=#{eid}
     </select>
 
 </mapper>

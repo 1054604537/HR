@@ -19,6 +19,14 @@
         a{
             text-decoration: none;
         }
+
+         body {
+             width: 100%;
+             height:100%;
+             font-family: 'Open Sans', sans-serif;
+             background: url("images/age.jpg");
+             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+         }
     </STYLE>
     <script type="text/javascript" src="js/jquery-3.1.0.js"></script>
     <script>
@@ -27,6 +35,9 @@
 </head>
 <body>
     <h3>欢迎您：${sessionScope.emp.e_name}</h3>
+    <%
+        System.out.println(System.currentTimeMillis());
+    %>
     <div>
         <ul>
             <li>
@@ -52,9 +63,6 @@
             </li>
             <li>
                 <a href="detailList">查看公司通讯录</a>
-            </li>
-            <li>
-                <a href="allSal">查看上月工资单</a>
             </li>
             <li>
                 <a href="dimission" onclick="return confirm('确定离职？')">提出离职(点击后不可修改，慎用！！！)</a>

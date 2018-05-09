@@ -294,6 +294,12 @@ public class UserController {
                 pw.print(false);
             }
     }
-
-
+    @RequestMapping("/index")
+    public String index(){
+        return "../../index";
+    }
+    @RequestMapping("/indexUserHome")
+    public String indexUserHome(){
+        return "success";
+    }
 }

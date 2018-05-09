@@ -24,6 +24,16 @@
         .div1{
             display: inline;
         }
+        body {
+            width: 100%;
+            height:100%;
+            font-family: 'Open Sans', sans-serif;
+            background: url("images/age.jpg");
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
+        }
+        form{
+            clear: left;
+        }
     </style>
 </head>
 <body>
@@ -145,5 +155,15 @@
         <%--<span style="color: red">${notLate5}</span>--%>
         </table>
     </div>
+
+
+
+<form action="reconsider" method="post">
+    复议原因：<input type="text" name="name" required="required"/><p/>
+    复议金额：<input type="number" name="number" required="required"/><p/>
+    <input type="submit" value="薪资复议"/>
+    <input type="submit" value="取消"/>
+</form>
+
 </body>
 </html>
